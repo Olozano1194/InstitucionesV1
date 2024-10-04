@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--Font Awesome-->
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css' rel='stylesheet'>
+
+    <!-- boostrap Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
+
+    <!-- Estilos -->
+    <link href="../../output.css" rel="stylesheet">
+
+
+    <title>Inicio de sesión</title>
+</head>
+<body class="bg-slate-900 text-gray-300">
+    <main>
+        <section class="min-h-screen flex items-center justify-center p-6">
+            <div class="bg-slate-700 p-10 rounded-lg">
+                <h1 class="font-black text-center text-3xl mb-7 tracking-[5px]">Plataforma <span class="text-sky-600">Estudiantil</span></h1>
+                <form action="" class="flex flex-col items-center justify-center gap-3 text-lg">
+
+                    <!-- Email -->
+                    <label for="email" class="flex font-semibold gap-2 items-center tracking-[5px]"><i class="fa-regular fa-envelope"></i>Email</label>
+                    <input type="text" class="w-full rounded-md p-2 text-stone-600 font-medium" placeholder="Email" id="email" name="email">
+                    <span></span>
+                    
+                    <!-- Contraseña -->
+                    <label for="contraseña" class="flex font-semibold gap-2 items-center tracking-[5px]"><i class="bi bi-bag"></i>Contraseña</label>
+                    <input type="password" class="w-full rounded-md p-2 text-stone-600 font-medium" name="password" id="contraseña" placeholder="Escriba la contraseña">
+                    <span></span>
+
+                    <!-- btn -->
+                    <button type="submit" id="btn" class="w-full flex items-center justify-center gap-2 font-black hover:scale-110 uppercase hover:text-slate-50 transition-colors text-lg bg-slate-500 mt-5 p-2 rounded-full  tracking-[4px]">
+                        <i class="bi bi-box-arrow-in-right"></i>
+                        Iniciar Sesión
+                    </button>
+                  
+                </form>
+
+                <div class="p-2 mt-3 flex flex-col gap-3">
+                    <p class="text-center text-stone-200">Olvido la contraseña? <a href="#" class="text-sky-600 font-bold hover:text-sky-700 transition-colors">Restablecer</a></p>
+
+                    <p class="text-center text-stone-200">No tienes cuenta? <a href="registrarUsuarios.html" class="text-sky-600 font-bold hover:text-sky-700 transition-colors">Registrarse</a></p>
+                </div>
+
+            </div>
+           
+        </section>
+    </main>
+    <script src="../../js/validacionesLogin.js"></script>
+    
+</body>
+</html>

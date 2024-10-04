@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--Font Awesome-->
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css' rel='stylesheet'>
+
+    <!-- boostrap Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
+
+    <!-- Estilos -->
+    <link href="../../output.css" rel="stylesheet">
+
+    <title>Registrar</title>
+</head>
+<body class="bg-slate-900 text-gray-300">
+    <main>
+        <section class="min-h-screen flex items-center justify-center p-6">
+            <div class="w-96 bg-slate-700 p-10 rounded-lg">
+                <h1 class="font-black text-center text-3xl mb-7 tracking-[5px]">Crear <span class="text-sky-600">Usuario</span></h1>
+
+                <form action="" id="formulario" class="flex flex-col items-center justify-center gap-3 text-lg">
+
+                    <!-- Nombre -->
+                     <label for="nombre" class="flex font-semibold gap-2 items-center tracking-[5px]"><i class="fa-regular fa-user"></i>Nombre</label>
+                     <input type="text" class="w-full rounded-md p-2 text-stone-600 font-medium inputText" id="nombre" name="nombre" placeholder="Ingrese su nombre">
+                     <span></span>
+
+
+                     <!-- Apellido -->
+                      <label for="apellido" class="flex font-semibold gap-2 items-center tracking-[5px]"><i class="fa-regular fa-user"></i>Apellido</label>
+                     <input type="text" class="w-full rounded-md p-2 text-stone-600 font-medium inputText" name="apellido" id="apellido" placeholder="Ingrese su apellido">
+                     <span></span>
+
+
+                     <!-- Email -->
+                     <label for="email" class="flex font-semibold gap-2 items-center tracking-[5px]"><i class="fa-regular fa-envelope"></i>Email</label>
+                     <input type="text" class="w-full rounded-md p-2 text-stone-600 font-medium"  name="email" id="email" placeholder="example@example.com">
+                     <span></span>
+
+                     <!-- Roles -->
+                    <label for="rol" class="flex font-semibold gap-2 items-center tracking-[5px]"><i class="fa-regular fa-lock"></i>Rol</label>
+                    <select name="rol" id="rol" class="w-full py-2 px-4 outline-none rounded-lg bg-slate-900 appearance-none select">
+                        <option value="">Seleccione una opción</option>
+                        <option value="admin">Admin</option>
+                        <option value="docente">Docente</option>
+                        <option value="estudiante">Estudiante</option>
+                    </select>
+                    <span></span>
+
+                     <!-- Contraseña -->
+                     <label for="contraseña" class="flex font-semibold gap-2 items-center tracking-[5px]"><i class="bi bi-bag"></i>Contraseña</label>
+                     <input type="password" name="password" id="contraseña" class="w-full rounded-md p-2 text-stone-600 font-medium"  placeholder="Ingrese su contraseña">
+                     <span></span>
+
+
+                     <!-- Repetir Contraseña -->
+                     <label for="repeatPass" class="flex text-base md:text-lg font-semibold gap-2 items-center tracking-[5px]"><i class="bi bi-bag"></i>Repetir Contraseña</label>
+                     <input type="password" name="repetirContraseña" id="repeatPass" class="w-full rounded-md p-2 text-stone-600 font-medium"   placeholder="Repetir contraseña">
+                     <span></span>
+
+                     <!-- btn -->
+                      <button type="submit" id="btn" class="w-full flex items-center justify-center gap-2 font-black hover:scale-110 uppercase hover:text-slate-50 transition-colors text-sm bg-slate-500 mt-5 p-2 rounded-full  tracking-[4px] cursor-pointer">
+                        <i class="bi bi-box-arrow-in-right text-purple-800 font-black text-2xl"></i>
+                        Registrarse
+
+                      </button>
+
+                </form>
+
+                <div class="p-2 mt-3 flex flex-col gap-3"></div>
+                    <p class="text-center text-lg text-stone-200">tienes cuenta? <a href="#" class="text-sky-600 font-bold hover:text-sky-700 transition-colors">Iniciar Sesión</a></p>
+                    
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <script src="../../js/validacionesUsuarios.js"></script>
+
+    
+</body>
+</html>
