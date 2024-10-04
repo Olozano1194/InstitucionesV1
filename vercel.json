@@ -7,12 +7,13 @@
  
 
   "routes": [
-    { "src": "/", "dest": "/dist/pages/auth/login.html" },
-    { "src": "/home", "dest": "/dist/pages/admin/home.html" },
-    { "src": "/registrar", "dest": "/dist/pages/auth/entidades/registrarEntidades.html" },
-    { "src": "/actualizar", "dest": "/dist/pages/auth/entidades/actualizarEntidades.html" },
-    { "src": "/(.*)", "dest": "/dist/pages/auth/login.html" }
-  ]
+    { "src": "/", "dest": "/src/pages/auth/login.html" },
+    { "src": "/home", "dest": "/src/pages/admin/home.html" },
+    { "src": "/registrar", "dest": "/src/pages/auth/entidades/registrarEntidades.html" },
+    { "src": "/actualizar", "dest": "/src/pages/auth/entidades/actualizarEntidades.html" },
+    { "src": "/(.*)", "dest": "/src/pages/auth/login.html" }
+  ],
+  "outputDirectory": "dist" 
 }
 
 
