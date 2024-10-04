@@ -1,28 +1,16 @@
-import config from './config';
-
 const API = axios.create({
-  baseURL: `${config.apiUrl}/instituciones`,
-  headers: {
-    'Content-Type': 'application/json',
-  },
+    baseURL: 'http://localhost:5000/api/instituciones',
+    headers: {
+        'Content-Type': 'application/json',
+      },
+
 });
 
-export default API;
-
-
-
-// const API = axios.create({
-//     baseURL: 'http://localhost:5000/api/instituciones',
-//     headers: {
-//         'Content-Type': 'application/json',
-//       },
-
-// });
-
-const formulario = document.querySelector('.formulario');
-if (formulario) {
+//aca es para que pueda crear una entidad
+const formularioCrear = document.querySelector('.formulario');
+if (formularioCrear) {
      //Metodo crear entidades
-    formulario.addEventListener('submit', async (e) => {
+    formularioCrear.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         //capturamos los valores de los input y selects
@@ -39,23 +27,27 @@ if (formulario) {
             nosedes: document.getElementById('sedes').value
 
         }
+        // console.log('Datos a enviar:', datos);
+        // console.log('URL de la API:', API);
 
-        console.log('Datos a enviar:', datos);
-        console.log('URL de la API:', API);
-
-        const id = formulario.getAttribute('data-id');
-        if (id) {
-            // Actualizar entidad
-            await actualizarInstitucion(id, datos);
-        }else {
+        try {
             // Crear entidad
-            await crearInstitucion(datos);
+            const resultado = await crearInstitucion(datos);
+            console.log('Resultado de la creación', resultado);
+                
+            mostrarMensaje('Institución creada con exito', 'text-green-500');
+
+            window.location.href = '../../admin/home.html';
+            
+        } catch (err) {
+            console.error('Error al procesar la solicitud:', err);
+            mostrarMensaje('Error al procesar la solicitud', 'text-red-500');
+            
         }
-        
-        
     });
     
 }
+
 //Crear instituciones
 const crearInstitucion = async (datos) => {
     try {
@@ -129,6 +121,54 @@ const ListarInstituciones = async () => {
 //Llamamos al metodo ListarInstituciones
 ListarInstituciones();
 
+//aca empieza la condición para que se pueda actualizar el formulario
+const formularioActualizar = document.querySelector('.formActualizar');
+if (formularioActualizar) {
+    formularioActualizar.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    //capturamos los valores de los input y selects
+    const datos = {
+        nombre: document.getElementById('nombre').value,
+        direccion: document.getElementById('direccion').value,
+        telefono: document.getElementById('telefono').value,
+        email: document.getElementById('email').value,
+        director: document.getElementById('director').value,
+        // departamento: document.getElementById('departamento').value,
+        // capitales: document.getElementById('capitales').value,
+        estado: document.getElementById('estado').value,
+        // secretaria: document.getElementById('secretaria').value,
+        nosedes: document.getElementById('sedes').value
+
+        }
+
+        const id = formularioActualizar.getAttribute('data-id');
+        try {
+            if (id) {
+            console.log('Intentando actualizar institución con ID:', id);
+            // Actualizar entidad
+            const resultadoActualizar = await actualizarInstitucion(id, datos);
+            console.log('Resultado de la actualizacion:', resultadoActualizar);
+            mostrarMensaje('Institución actualizada con exito', 'text-green-500');
+
+            }else {
+                console.error('No se encontro ID para atualización');
+            }
+            
+            window.location.href = '../../admin/home.html';
+            
+        } catch (err) {
+            console.error('Error al procesar la solicitud:', err);
+            mostrarMensaje('Error al procesar la solicitud', 'text-red-500');
+            
+        }
+       
+        
+        
+    });
+    
+}
+
 //función para redirigir al archivo de actualización
 const editarInstitucion = (id) => {
     //redirigir a la pagina actualizacion
@@ -175,15 +215,17 @@ const cargarDatosInstitucion = async (id) => {
 const actualizarInstitucion = async (id, datos) => {
     
     try {
+        console.log('ID que se está enviando para actualización:', id);
+        console.log('Datos que se están enviando:', datos);
         //Hacemos la solicitud put para actualizar los datos de la institución
         const response = await API.put(`/${id}`, datos);
         console.log('Institucion actualizada', response.data);
-        
-        const formulario = document.querySelector('.formActualizar');
-        if (formulario) {
-            formulario.reset();
-            formulario.removeAttribute('data-id');            
-        }
+        return response.data;
+        // const formulario = document.querySelector('.formActualizar');
+        // if (formulario) {
+        //     //formulario.reset();
+        //     formulario.removeAttribute('data-id');            
+        // }
            
     }catch(err) {
         console.error('No se pudo actualizar la institución', err);
