@@ -115,8 +115,8 @@ Para crear el proyecto se necesita hacer lo siguiente:
 
     - Ahora nos dirigimos a la carpeta **admin** donde tenemos por el momento un archivo.
 
-            - ![imagen del Dashboard](src/img/home.jpg)
-    
+        - ![imagen del Dashboard](src/img/home.jpg)
+
     - Nos dirigimos a la carpeta api, en esa carpeta tenemos un archivo js, donde manejaremos todas las peticiones http para el crud entidades.
 
     
@@ -126,11 +126,26 @@ Para crear el proyecto se necesita hacer lo siguiente:
 
         - tenemos que crear en el front un servidor para poder ejecutarlo en otro puerto:
 
-            - `npm install -g http-server 8000`
+            - ```bash
+                npm install http-server
+              ```
 
-            - Luego de instalar el servidor, se inicia con un comando en la terminal
+            - Luego de instalar el servidor, agregamos un script en el package.json para ejecutar el servidor:
 
-                - `http-server -p 8000`
+                - ```javascript
+                    {
+                     "scripts": {
+                     "start": "http-server -p 8000"
+                        }
+                    }
+                  ```
+
+            - Luego ejecutamos el servidor
+
+                - ```bash
+                    npm run start
+                  ```
+                    
             
             - Tenemos que tener tambien otra terminar para ejecutar el siguiente comando que nos sirve para los estilos:
 
