@@ -30,16 +30,22 @@ Para crear el proyecto se necesita hacer lo siguiente:
     - se puede descargar desde el siguiente enlace: https://nodejs.org/es/download/
 
 - Iniciamos npm
-    - `$ npm init -y`
+    - ```bash
+        npm init -y
+      ```
 
 - Dentro de la carpeta creamos otra carpeta llamada **src**, en esa carpeta colocaremos todos los archivos estaticos, estilos y archivos js.
 
 - Luego en la carpeta principal instalamos tailwind postcss y autopreficer.
-    - `$ npm install -D tailwindcss postcss autoprefixer`
+    - ```bash
+        npm install -D tailwindcss postcss autoprefixer
+      ```
 
 - Hacemos la respectiva configuración para que los estilos de tailwind funcionen:
 
-    - `$ npx tailwindcss init`
+    - ```bash
+        npx tailwindcss init
+      ```
 
     - Creamos un archivo **postcss.config.js** en la carpeta raiz con el siguiente contenido:
 
@@ -58,9 +64,11 @@ Para crear el proyecto se necesita hacer lo siguiente:
 
             - Añadimos las siguientes directivas de tailwind en ese archivo
 
-                - `@tailwind base;
+                - ```css
+                    @tailwind base;
                     @tailwind components;
-                    @tailwind utilities;`
+                    @tailwind utilities;
+                  ```
 
     - Configuramos el archivo **tailwind.config.js** en nuestro proyecto
 
@@ -93,7 +101,9 @@ Para crear el proyecto se necesita hacer lo siguiente:
           ```
 
     -Por ultimos debemos ejecutar el siguiente comando en la terminal:
-        - `npm run build:css`
+        - ```bash
+            npm run build:css
+          ```
 
 - Seguimos con la organización de las carpetas y archivos:
 
@@ -120,8 +130,6 @@ Para crear el proyecto se necesita hacer lo siguiente:
     - Nos dirigimos a la carpeta api, en esa carpeta tenemos un archivo js, donde manejaremos todas las peticiones http para el crud entidades.
 
     
-
-
     - Para que nos funcione las peticiones del archivo **entidades.api.js**, de manera local, tenemos que hacer la siguiente configuración:
 
         - tenemos que crear en el front un servidor para poder ejecutarlo en otro puerto:
@@ -149,14 +157,18 @@ Para crear el proyecto se necesita hacer lo siguiente:
             
             - Tenemos que tener tambien otra terminar para ejecutar el siguiente comando que nos sirve para los estilos:
 
-                - `npm run build:css`
+                - ```bash
+                    npm run build:css
+                  ```
 
 
         - En la parte del back tenemos que hacer una modificación para que funcione la conexión:
 
             - Nos dirigimos a la carpeta raiz donde tenemos el back e instalamos lo siguiente
 
-                - `npm install cors`
+                - ```bash
+                    npm install cors
+                  ```
 
                 - Luego nos dirigimos al archivo **app.js** y realizamos la configuración para que funcione cors.
 
@@ -173,7 +185,9 @@ Para crear el proyecto se necesita hacer lo siguiente:
                 
             - Tambien tenemos que tener otra terminar para inicializar el bak
 
-                - `node app.js`
+                - ```bash
+                    node app.js
+                  ```
 
                 - Ojo tenemos que tener la base de datos en mongodb.
 
