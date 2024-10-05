@@ -8,31 +8,35 @@
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css' rel='stylesheet'>
 
     <!-- boostrap Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <!-- Estilos -->
-    <link href="../../../dist/output.css" rel="stylesheet">
+    <!-- Estilos de tailwind -->
+    <link href="../../../../dist/output.css" rel="stylesheet">
 
     <!-- Scripts para usar axios -->
     <script src="../../../../node_modules/axios/dist/axios.min.js"></script>
 
     <title>Actualizar Entidades</title>
 </head>
+
 <body class="bg-slate-900 text-gray-300">
     <main>
         <section class="min-h-screen flex items-center justify-center p-6">
-            <div class="w-96 md:w-4/12 sm:w-6/12 lg:w-3/12 bg-slate-700 p-10 rounded-lg">
+            <div class="w-96 bg-slate-700 p-10 rounded-lg">
                 <h1 class="font-black text-center text-3xl mb-7 tracking-[5px]">Actualizar <span class="text-sky-600">Entidades</span></h1>
 
-                <form id="formularios" class="formulario flex flex-col items-center justify-center gap-3 text-lg">
+                <form id="formularios" class="formActualizar flex flex-col items-center justify-center gap-3 text-lg">
+                    <!-- Id  -->
+                     <!-- <input type="hidden" id="id" name="id"> -->
+
                     <!-- Nombre -->
                     <label for="nombre" class="flex font-semibold gap-2 items-center tracking-[5px]"><i class="bi bi-building"></i>Nombre del colegio</label>
-                    <input type="text" name="nombre" id="nombre" class="w-full rounded-md p-2 text-stone-600 font-medium inputText" placeholder="Nombre del colegio">
+                    <input type="text" name="nombre" id="nombre" class="w-full rounded-md p-2 text-stone-600 font-medium inputText" >
                     <span></span>
                     
                     <!-- Direccion -->
                     <label for="direccion" class="flex  font-semibold gap-2 items-center tracking-[5px]"><i class="fa-regular fa-address-book"></i>Dirección</label>
-                    <input type="text" id="direccion" name="direccion" class="w-full rounded-md p-2 text-stone-600 font-medium inputText" placeholder="Dirección del colegio">
+                    <input type="text" id="direccion" name="direccion" class="w-full rounded-md p-2 text-stone-600 font-medium inputText">
                     <span></span>
 
                     <!-- Telefono -->
@@ -42,72 +46,14 @@
 
                     <!-- Email -->
                     <label for="email" class="flex font-semibold gap-2 items-center tracking-[5px]"><i class="fa-regular fa-envelope"></i>Correo</label>
-                    <input type="email" id="email" name="email" class="w-full rounded-md p-2 text-stone-600 font-medium" placeholder="Correo del colegio">
+                    <input type="email" id="email" name="email" class="w-full rounded-md p-2 text-stone-600 font-medium">
                     <span></span>
 
                     <!-- Director -->
                     <label for="director" class="flex font-semibold gap-2 items-center tracking-[5px]"><i class="fa-regular fa-user"></i>Director</label>
-                    <input type="text" id="director" name="director" class="w-full rounded-md p-2 text-stone-600 font-medium inputText" placeholder="Nombre del director">
+                    <input type="text" id="director" name="director" class="w-full rounded-md p-2 text-stone-600 font-medium inputText">
                     <span></span>
                     
-                    <!-- Departamento -->
-                    <label for="departamento" class="flex font-semibold gap-2 items-center tracking-[5px]"><i class="bi bi-geo-alt"></i>Departamento</label>
-                    <select id="departamento" name="departamento" class="w-full py-2 px-4 outline-none rounded-lg bg-slate-900 appearance-none select">
-                        <option value="">Seleccione una opción</option>
-                        <option value="amazonas">Amazonas</option>
-                        <option value="">Antioquia</option>
-                        <option value="">Arauca</option>
-                        <option value="">Atlántico</option>
-                        <option value="">Bolivar</option>
-                        <option value="">Boyacá</option>
-                        <option value="">Caldas</option>
-                        <option value="">Caquetá</option>
-                        <option value="">Casanare</option>
-                        <option value="">Cauca</option>
-                        <option value="">Cesar</option>
-                        <option value="">Chocó</option>
-                        <option value="">Córdoba</option>
-                        <option value="cundinamarca">Cundinamarca</option>
-                        <option value="">Guainía</option>
-                        <option value="">Guaviare</option>
-                        <option value="huila">Huila</option>
-                        <option value="">La Guajira</option>
-                        <option value="tolima">Tolima</option>
-                        <option value="">Valle del Cauca</option>
-
-
-                        
-                    </select>
-                    <span></span>
-
-                    <!-- Capitales -->
-                     <label for="capitales" class="flex font-semibold gap-2 items-center tracking-[5px]"><i class="bi bi-geo-alt"></i>Capitales</label>
-                     <select id="capitales" name="capitales" class="w-full py-2 px-4 outline-none rounded-lg bg-slate-900 appearance-none select">
-                        <option value="">Seleccione una opción</option>
-                        <option value="">Leticia</option>
-                        <option value="">Medellín</option>
-                        <option value="">Arauca</option>
-                        <option value="">Barranquilla</option>
-                        <option value="">Cartagena de Indias</option>
-                        <option value="">Tunja</option>
-                        <option value="manizales">Manizales</option>
-                        <option value="">Florencia</option>
-                        <option value="">Yopal</option>
-                        <option value="">Popayán</option>
-                        <option value="">Valledupar</option>
-                        <option value="">Quibdó</option>
-                        <option value="">Montería</option>
-                        <option value="bogota">Bogotá</option>
-                        <option value="">Inírida</option>
-                        <option value="">San Jóse del Guaviare</option>
-                        <option value="">Neiva</option>
-                        <option value="">Riohacha</option>
-                        <option value="ibague">Ibagué</option>
-                        <option value="">Cali</option>
-                        
-                    </select>
-                    <span></span>
-
                     <!-- Estado -->
                     <label for="estado" class="flex font-semibold gap-2 items-center tracking-[5px]"><i class="bi bi-geo-alt"></i>Estado</label>
                     <select id="estado" name="estado" class="w-full py-2 px-4 outline-none rounded-lg bg-slate-900 appearance-none select">
@@ -117,20 +63,15 @@
                     </select>
                     <span></span>
 
-                    <!-- Secretaria -->
-                    <label for="secretaria" class="flex font-semibold gap-2 items-center tracking-[5px]"><i class="bi bi-geo-alt"></i>Secretaría</label>
-                    <input type="text" class="w-full rounded-md p-2 text-stone-600 font-medium inputText" name="secretaria" id="secretaria" placeholder="Nombre de la secretaría">                      
-                      <span></span>
-
                     <!-- Numero de Sedes -->
                     <label for="sedes" class="flex font-semibold gap-2 items-center tracking-[5px]"><i class="bi bi-geo-alt"></i>Sedes</label>
-                    <input type="text" id="sedes" name="sedes" class="w-full rounded-md p-2 text-stone-600 font-medium" placeholder="Número de sedes">                      
+                    <input type="text" id="sedes" name="sedes" class="w-full rounded-md p-2 text-stone-600 font-medium" >                      
                        <span></span>
 
                      <!-- btn -->
-                    <button type="submit" id="btn" class="w-full flex items-center justify-center gap-2 font-black hover:scale-110 uppercase hover:text-slate-50 transition-colors text-sm bg-slate-500 mt-5 p-2 rounded-full  tracking-[4px] cursor-pointer">
+                    <button type='submit' id="btn" class="w-full flex items-center justify-center gap-2 font-black hover:scale-110 uppercase hover:text-slate-50 transition-colors text-sm bg-slate-500 mt-5 p-2 rounded-full  tracking-[4px] cursor-pointer">
                     <i class="bi bi-box-arrow-in-right text-purple-800 font-black text-2xl"></i>
-                        Registrar
+                        Actualizar
 
                     </button>
                         
@@ -139,8 +80,29 @@
             </div>
         </section>
     </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Obtener la URL actual
+            const urlParams = new URLSearchParams(window.location.search);
 
+            // Obtener el valor del parámetro 'id'
+            const id = urlParams.get('id');
+
+            if (id) {
+                cargarDatosInstitucion(id);
+                
+            }else {
+                console.error('ID no encontrado en la url');
+                
+            }
+
+        })
+        
+        
+ 
+    </script>
     <script src="../../../js/validacionesEntidades.js"></script>
     <script src="../../../api/entidades.api.js"></script>
+    
 </body>
 </html>
