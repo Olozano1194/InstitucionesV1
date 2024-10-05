@@ -4,9 +4,8 @@
     { "src": "package.json", "use": "@vercel/static-build"  }
     
   ],
- 
-
   "routes": [
+    { "src": "/output.css", "dest": "/output.css"},
     { "src": "/", "dest": "/pages/auth/login.html" },
     { "src": "/home", "dest": "/pages/admin/home.html" },
     { "src": "/registrar", "dest": "/pages/auth/entidades/registrarEntidades.html" },
