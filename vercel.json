@@ -4,13 +4,13 @@
     { "src": "dist/**/*", "use": "@vercel/static" }
   ],
   "routes": [
-    { "src": "/home", "dest": "dist/pages/admin/home.html" },
-    { "src": "/registrar", "dest": "dist/pages/auth/entidades/registrarEntidades.html" },
-    { "src": "/actualizar", "dest": "dist/pages/auth/entidades/actualizarEntidades.html" },
+    { "src": "dist/home", "dest": "dist/pages/admin/home.html" },
+    { "src": "dist/registrar", "dest": "dist/pages/auth/entidades/registrarEntidades.html" },
+    { "src": "dist/actualizar", "dest": "dist/pages/auth/entidades/actualizarEntidades.html" },
     
-    { "src": "/js/(.*)", "dest": "dist/js/$1" },
+    { "src": "dist/js/(.*)", "dest": "dist/js/$1" },
     
-    { "src": "/output.css", "dest": "dist/output.css" },
+    { "src": "dist/output.css", "dest": "dist/output.css" },
 
     
     { "src": "/(.*)", "dest": "dist/pages/auth/login.html" }
