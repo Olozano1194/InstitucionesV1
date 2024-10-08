@@ -4,6 +4,7 @@
     { "src": "dist/**/*", "use": "@vercel/static" }
   ],
   "routes": [
+    { "src": "/", "dest": "dist/pages/auth/login.html" },
     { "src": "/home", "dest": "dist/pages/admin/home.html" },
     { "src": "/registrar", "dest": "dist/pages/auth/entidades/registrarEntidades.html" },
     { "src": "/actualizar", "dest": "dist/pages/auth/entidades/actualizarEntidades.html" },
