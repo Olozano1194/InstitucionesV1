@@ -10,10 +10,8 @@
     
     { "src": "dist/js/(.*)", "dest": "dist/js/$1" },
     
-    { "src": "dist/output.css", "dest": "dist/output.css" },
-
+    { "src": "dist/output.css", "dest": "dist/output.css" }
     
-    { "src": "/(.*)", "dest": "dist/pages/auth/login.html" }
   ]
 }
 
