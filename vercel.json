@@ -1,17 +1,17 @@
 {
   "version": 2,
   "builds": [
-    { "src": "dist/**/*", "use": "@vercel/static" }
+    { "src": "src/**/*", "use": "@vercel/static" }
   ],
   "routes": [
-    { "src": "/", "dest": "dist/pages/auth/login.html" },
-    { "src": "/home", "dest": "dist/pages/admin/home.html" },
-    { "src": "/registrar", "dest": "dist/pages/auth/entidades/registrarEntidades.html" },
-    { "src": "/actualizar", "dest": "dist/pages/auth/entidades/actualizarEntidades.html" },
+    { "src": "/", "dest": "src/pages/auth/login.html" },
+    { "src": "/home", "dest": "src/pages/admin/home.html" },
+    { "src": "/registrar", "dest": "src/pages/auth/entidades/registrarEntidades.html" },
+    { "src": "/actualizar", "dest": "src/pages/auth/entidades/actualizarEntidades.html" },
     
-    { "src": "/js/(.*)", "dest": "dist/js/$1" },
+    { "src": "/js/(.*)", "dest": "src/js/$1" },
     
-    { "src": "/output.css", "dest": "dist/output.css" }
+    { "src": "/output.css", "dest": "src/output.css" }
     
   ]
 }
