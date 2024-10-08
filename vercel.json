@@ -4,16 +4,16 @@
     { "src": "dist/", "use": "@vercel/static" }
   ],
   "routes": [
-    { "src": "/home", "dest": "/pages/admin/home.html" },
-    { "src": "/registrar", "dest": "/pages/auth/entidades/registrarEntidades.html" },
-    { "src": "/actualizar", "dest": "/pages/auth/entidades/actualizarEntidades.html" },
+    { "src": "/home", "dest": "pages/admin/home.html" },
+    { "src": "/registrar", "dest": "pages/auth/entidades/registrarEntidades.html" },
+    { "src": "/actualizar", "dest": "pages/auth/entidades/actualizarEntidades.html" },
     
-    { "src": "/js/(.*)", "dest": "/js/$1" },
+    { "src": "/js/(.*)", "dest": "js/$1" },
     
-    { "src": "/output.css", "dest": "/output.css" },
+    { "src": "/output.css", "dest": "output.css" },
 
     
-    { "src": "/(.*)", "dest": "/pages/auth/login.html" }
+    { "src": "/(.*)", "dest": "pages/auth/login.html" }
   ]
 }
 
