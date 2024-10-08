@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "tailwindcss -i ./src/css/style.css -o ./dist/output.css && copyfiles -u 1 src/**/*.html src/js/** src/api/** dist",
+    "build": "tailwindcss -i ./src/css/style.css -o ./dist/output.css",
     
     "test": "echo \"Error: no test specified\" && exit 1"
   },
