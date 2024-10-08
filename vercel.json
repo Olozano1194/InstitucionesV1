@@ -1,8 +1,7 @@
 {
   "version": 2,
   "builds": [
-    { "src": "package.json", "use": "@vercel/static-build" },
-    { "src": "dist/**/*.html", "use": "@vercel/static" }
+    { "src": "dist/**/*", "use": "@vercel/static" }
   ],
   "routes": [
     { "src": "/", "dest": "/dist/pages/auth/login.html" },
