@@ -11,7 +11,7 @@
     
     { "src": "/js/(.*)", "dest": "src/js/$1" },
     
-    { "src": "/output.css", "dest": "src/output.css" }
+    { "src": "/output.css", "dest": "dist/output.css" }
     
   ]
 }
