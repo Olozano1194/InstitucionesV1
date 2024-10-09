@@ -10,6 +10,7 @@
     { "src": "/actualizar", "dest": "src/pages/auth/entidades/actualizarEntidades.html" },
     
     { "src": "/js/(.*)", "dest": "src/js/$1" },
+    { "src": "/api/(.*)", "dest": "src/api/$1" },
     
     { "src": "/output.css", "dest": "src/output.css" }
     
