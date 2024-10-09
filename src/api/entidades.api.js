@@ -1,5 +1,5 @@
 const API = axios.create({
-    baseURL: 'http://localhost:5000/api/instituciones',
+    baseURL: 'https://api-instituciones.vercel.app/api/instituciones',
     headers: {
         'Content-Type': 'application/json',
       },
