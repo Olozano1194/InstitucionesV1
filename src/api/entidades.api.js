@@ -7,7 +7,7 @@ const API = axios.create({
 });
 
 //aca es para que pueda crear una entidad
-const formularioCrear = document.querySelector('.formulario');
+const formularioCrear = document.getElementById('formularios');
 if (formularioCrear) {
      //Metodo crear entidades
     formularioCrear.addEventListener('submit', async (e) => {
