@@ -37,7 +37,7 @@ if (formularioCrear) {
                 
             mostrarMensaje('Institución creada con exito', 'text-green-500');
 
-            window.location.href = '../../admin/home.html';
+            window.location.href = 'src/pages/admin/home.html';
             
         } catch (err) {
             console.error('Error al procesar la solicitud:', err);

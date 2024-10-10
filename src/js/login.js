@@ -13,7 +13,7 @@ document.getElementById('login').addEventListener('submit', function (e) {
     if (username === adminUser && password === adminPass) {
         console.log('Inicio de sesión exitoso');
         // Redirigir a la página de inicio
-        window.location.href = '../admin/home.html'; 
+        window.location.href = 'src/pages/admin/home.html'; 
     } else {
         alert('Credenciales incorrectas. Intenta de nuevo.'); // Mensaje de error
         console.log('Credenciales incorrectas');
