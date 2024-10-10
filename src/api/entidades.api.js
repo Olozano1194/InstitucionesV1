@@ -155,7 +155,7 @@ if (formularioActualizar) {
                 console.error('No se encontro ID para atualización');
             }
             
-            window.location.href = '../../admin/home.html';
+            window.location.href = 'src/pages/admin/home.html';
             
         } catch (err) {
             console.error('Error al procesar la solicitud:', err);
@@ -172,7 +172,7 @@ if (formularioActualizar) {
 //función para redirigir al archivo de actualización
 const editarInstitucion = (id) => {
     //redirigir a la pagina actualizacion
-    const url = `../auth/entidades/actualizarEntidades.html?id=${id}`;
+    const url = `src/pages/auth/entidades/actualizarEntidades.html?id=${id}`;
     console.log('Redirigiendo:', url);
     
     window.location.href = url;
