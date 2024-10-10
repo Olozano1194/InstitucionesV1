@@ -6,6 +6,8 @@ const API = axios.create({
 
 });
 
+const baseURL = window.location.origin;
+
 //aca es para que pueda crear una entidad
 const formularioCrear = document.getElementById('formularios');
 if (formularioCrear) {
@@ -37,7 +39,8 @@ if (formularioCrear) {
                 
             mostrarMensaje('Institución creada con exito', 'text-green-500');
 
-            window.location.href = 'src/pages/admin/home.html';
+            const url = `${baseURL}/src/pages/admin/home.html`;
+            window.location.href = url;
             
         } catch (err) {
             console.error('Error al procesar la solicitud:', err);
@@ -155,7 +158,8 @@ if (formularioActualizar) {
                 console.error('No se encontro ID para atualización');
             }
             
-            window.location.href = 'src/pages/admin/home.html';
+            const url = `${baseURL}/src/pages/admin/home.html`
+            window.location.href = url;
             
         } catch (err) {
             console.error('Error al procesar la solicitud:', err);
@@ -172,7 +176,7 @@ if (formularioActualizar) {
 //función para redirigir al archivo de actualización
 const editarInstitucion = (id) => {
     //redirigir a la pagina actualizacion
-    const url = `src/pages/auth/entidades/actualizarEntidades.html?id=${id}`;
+    const url = `${baseURL}/src/pages/auth/entidades/actualizarEntidades.html?id=${id}`;
     console.log('Redirigiendo:', url);
     
     window.location.href = url;
