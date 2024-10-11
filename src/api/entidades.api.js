@@ -3,7 +3,6 @@ const API = axios.create({
     headers: {
         'Content-Type': 'application/json',
       },
-
 });
 
 const baseURL = window.location.origin;
@@ -29,9 +28,7 @@ if (formularioCrear) {
             nosedes: document.getElementById('sedes').value
 
         }
-        // console.log('Datos a enviar:', datos);
-        // console.log('URL de la API:', API);
-
+        
         try {
             // Crear entidad
             const resultado = await crearInstitucion(datos);

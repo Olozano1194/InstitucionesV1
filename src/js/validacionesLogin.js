@@ -61,13 +61,6 @@ const validateEmptyField = (e) => {
   
 }
 
-
-
-
-
-
-
-
 correo.addEventListener('blur', validateEmptyField);
 contraseña.addEventListener('blur', validateEmptyField);
 
