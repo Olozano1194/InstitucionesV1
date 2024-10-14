@@ -1,6 +1,6 @@
 const API = axios.create({
-    //baseURL: 'https://api-instituciones.vercel.app/api/usuarios',
-    baseURL: 'http://localhost:5000/api/usuarios',
+    baseURL: 'https://api-instituciones.vercel.app/api/usuarios',
+    // baseURL: 'http://localhost:5000/api/usuarios',
     headers: {
         'Content-Type': 'application/json',
       },
