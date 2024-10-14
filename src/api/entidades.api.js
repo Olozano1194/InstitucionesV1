@@ -186,6 +186,8 @@ const cargarDatosInstitucion = async (id) => {
         //Hacemos la solicitud get para obtener los datos de la institucion
         const response = await API.get(`/${id}`);
         const institucion = response.data;
+        //console.log(institucion);
+        
 
         //llenamos los campos
         document.getElementById('nombre').value = institucion.nombre;
@@ -197,7 +199,7 @@ const cargarDatosInstitucion = async (id) => {
         // document.getElementById('capitales').value = institucion.capitales;
         document.getElementById('estado').value = institucion.estado;
         // document.getElementById('secretaria').value = institucion.secretaria;
-        document.getElementById('sedes').value = institucion.sedes;
+        document.getElementById('sedes').value = institucion.nosedes;
 
         //agregamos el id
         const formulario = document.querySelector('.formActualizar');

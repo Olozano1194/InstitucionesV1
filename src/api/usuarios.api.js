@@ -1,14 +1,16 @@
 const API = axios.create({
-    baseURL: 'https://api-instituciones.vercel.app/api/usuarios',
+    //baseURL: 'https://api-instituciones.vercel.app/api/usuarios',
+    baseURL: 'http://localhost:5000/api/usuarios',
     headers: {
         'Content-Type': 'application/json',
       },
 });
 
+
 const baseURL = window.location.origin;
 
 //aca es para que pueda crear una usuario
-const formularioCrear = document.getElementById('formulario');
+const formularioCrear = document.getElementById('formularios');
 if (formularioCrear) {
      //Metodo crear usuarios
     formularioCrear.addEventListener('submit', async (e) => {
@@ -31,7 +33,7 @@ if (formularioCrear) {
                 
             mostrarMensaje('Usuario creado con exito', 'text-green-500');
 
-            const url = `${baseURL}/src/pages/admin/home.html`;
+            const url = `${baseURL}/src/pages/admin/listarUsuarios.html`;
             window.location.href = url;
             
         } catch (err) {
@@ -91,8 +93,7 @@ const ListarUsuarios = async () => {
                 <td class='border-b-2 border-slate-700 px-4 py-2 text-center max-w-xs'>${usuario.apellido}</td>
                 <td class='border-b-2 border-slate-700 px-4 py-2 text-center'>${usuario.email}</td>
                 <td class='border-b-2 border-slate-700 px-4 py-1 text-center'>${usuario.rol}</td>
-                <td class='border-b-2 border-slate-700 px-4 py-2 text-center'>${usuario.password}</td>
-               
+                
                 <td class='border-b-2 border-slate-700 px-4 py-2 text-center'>
                 <button class="bg-sky-500 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded-md" onclick="editarUsuario('${usuario._id}')">Editar</button>
                 </td>
@@ -115,7 +116,7 @@ const ListarUsuarios = async () => {
 ListarUsuarios();
 
 //aca empieza la condición para que se pueda actualizar el formulario
-const formularioActualizar = document.querySelector('.formActualizar');
+const formularioActualizar = document.querySelector('.updateFormUser');
 if (formularioActualizar) {
     formularioActualizar.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -143,7 +144,7 @@ if (formularioActualizar) {
                 console.error('No se encontro ID para el Usuario');
             }
             
-            const url = `${baseURL}/src/pages/admin/home.html`
+            const url = `${baseURL}/src/pages/admin/listarUsuarios.html`
             window.location.href = url;
             
         } catch (err) {
@@ -159,7 +160,7 @@ if (formularioActualizar) {
 //función para redirigir al archivo de actualización
 const editarUsuario = (id) => {
     //redirigir a la pagina actualizacion
-    const url = `${baseURL}/src/pages/auth/entidades/actualizarEntidades.html?id=${id}`;
+    const url = `${baseURL}/src/pages/auth/usuarios/actualizarUsuarios.html?id=${id}`;
     console.log('Redirigiendo:', url);
     
     window.location.href = url;
@@ -172,16 +173,18 @@ const cargarDatosUsuario = async (id) => {
         //Hacemos la solicitud get para obtener los datos del usuario
         const response = await API.get(`/${id}`);
         const usuario = response.data;
+        
+        
 
         //llenamos los campos
         document.getElementById('nombre').value = usuario.nombre;
         document.getElementById('apellido').value = usuario.apellido;
         document.getElementById('email').value = usuario.email;
         document.getElementById('rol').value = usuario.rol;
-        document.getElementById('password').value = usuario.password;
-        
+        document.getElementById('contraseña').value = usuario.password;
+              
         //agregamos el id
-        const formulario = document.querySelector('.formActualizar');
+        const formulario = document.querySelector('.updateFormUser');
         if (formulario) {
             formulario.setAttribute('data-id', id);
         }else {
@@ -212,7 +215,7 @@ const actualizarUsuario = async (id, datos) => {
 };
 
 //Eliminar Entidades
-const eliminarInstitucion = async (id) => {
+const eliminarUsuario = async (id) => {
     //Mostrar mensaje de confirmación
     const confirmación = confirm('¿Esta seguro de que deseas eliminar el usuario?');
     if (!confirmación) return; //Si el usuario cancela no se haría nada
@@ -238,7 +241,7 @@ const eliminarInstitucion = async (id) => {
 
 //funcion para mostrar mensajes
 function mostrarMensaje(mensaje, clase) {
-    const formulario = document.querySelector('.formulario');
+    const formulario = document.querySelector('#formulario');
     if (!formulario) {
         console.error('No se encontró el formulario');
         return;

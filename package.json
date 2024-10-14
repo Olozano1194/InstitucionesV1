@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "tailwindcss -i ./src/css/style.css -o ./dist/output.css",
+    "start": "http-server -p 8000",
+    "build": "tailwindcss -i ./src/css/style.css -o ./src/output.css",
     
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,7 +16,8 @@
     "autoprefixer": "^10.4.20",
     "axios": "^1.7.7",
     "postcss": "^8.4.47",
-    "tailwindcss": "^3.4.12"
+    "tailwindcss": "^3.4.12",
+    "http-server": "^14.1.1"
   },
   "devDependencies": {
     "copyfiles": "^2.4.1"
