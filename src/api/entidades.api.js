@@ -36,7 +36,7 @@ if (formularioCrear) {
                 
             mostrarMensaje('Institución creada con exito', 'text-green-500');
 
-            const url = `${baseURL}/src/pages/admin/home.html`;
+            const url = `${baseURL}/src/pages/admin/listarEntidades.html`;
             window.location.href = url;
             
         } catch (err) {
@@ -155,7 +155,7 @@ if (formularioActualizar) {
                 console.error('No se encontro ID para atualización');
             }
             
-            const url = `${baseURL}/src/pages/admin/home.html`
+            const url = `${baseURL}/src/pages/admin/listarEntidades.html`
             window.location.href = url;
             
         } catch (err) {
