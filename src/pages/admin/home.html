@@ -75,7 +75,14 @@
                         </ul>
             
                         <ul>
-                            <li><a href="../auth/entidades/registrarEntidades.html" class="xl:text-xl flex items-center gap-3 py-2 px-4 rounded-lg hover:bg-slate-900 transition-colors">Institución</a></li>
+                            <li>
+                                <a href="../auth/entidades/registrarEntidades.html" class="xl:text-xl flex items-center gap-3 py-2 px-4 rounded-lg hover:bg-slate-900 transition-colors">Institución</a>
+                                <!-- submenu -->
+                                <ul class="absolute hidden group-hover:block bg-gray-800 rounded-lg shadow-lg transition-opacity duration-300 ease-in-out delay-100">
+                                    <li><a href="src/pages/auth/entidades/registrarEntidades.html" class="block xl:text-xl gap-3 py-2 px-4 rounded-lg hover:bg-slate-900 transition-colors">Crear Entidad</a></li>
+                                    <li><a href="src/pages/admin/listarEntidades.html" class="xl:text-xl block gap-3 py-2 px-4 rounded-lg hover:bg-slate-900 transition-colors">Listar Entidad</a></li>
+                                </ul>
+                            </li>
                         </ul>
             
                         <ul>
