@@ -81,6 +81,19 @@
             </div>
         </section>
     </main>
+    <script src="../../js/axios.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                //Si no existe un token redirige a login
+                window.location.href = '../auth/login.html';
+            }
+
+        });
+    </script>
+    
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Obtener la URL actual

@@ -15,7 +15,6 @@
 
     <!-- Scripts para usar axios -->
     <!-- <script src="../../../node_modules/axios/dist/axios.min.js"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     
     <title>Home</title>
 
@@ -79,8 +78,8 @@
                                 <a href="../auth/entidades/registrarEntidades.html" class="xl:text-xl flex items-center gap-3 py-2 px-4 rounded-lg hover:bg-slate-900 transition-colors">Institución</a>
                                 <!-- submenu -->
                                 <ul class="absolute hidden group-hover:block bg-gray-800 rounded-lg shadow-lg z-10 transition-opacity duration-300 ease-in-out delay-100">
-                                    <li><a href="src/pages/auth/entidades/registrarEntidades.html" class="block xl:text-xl gap-3 py-2 px-4 rounded-lg hover:bg-slate-900 transition-colors">Crear Entidad</a></li>
-                                    <li><a href="src/pages/admin/listarEntidades.html" class="xl:text-xl block gap-3 py-2 px-4 rounded-lg hover:bg-slate-900 transition-colors">Listar Entidad</a></li>
+                                    <li><a href="../auth/entidades/registrarEntidades.html" class="block xl:text-xl gap-3 py-2 px-4 rounded-lg hover:bg-slate-900 transition-colors">Crear Entidad</a></li>
+                                    <li><a href="../admin/listarEntidades.html" class="xl:text-xl block gap-3 py-2 px-4 rounded-lg hover:bg-slate-900 transition-colors">Listar Entidad</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -90,8 +89,8 @@
                                 <a href="#" class="xl:text-xl flex items-center gap-3 py-2 px-4 rounded-lg hover:bg-slate-900 transition-colors">Usuarios</a>
                                 <!-- submenu -->
                                 <ul class="absolute hidden group-hover:block bg-gray-800 rounded-lg shadow-lg transition-opacity duration-300 ease-in-out delay-100">
-                                    <li><a href="src/pages/auth/usuarios/registrarUsuarios.html" class="block xl:text-xl gap-3 py-2 px-4 rounded-lg hover:bg-slate-900 transition-colors">Crear Usuario</a></li>
-                                    <li><a href="src/pages/admin/listarUsuarios.html" class="xl:text-xl block gap-3 py-2 px-4 rounded-lg hover:bg-slate-900 transition-colors">Listar Usuarios</a></li>
+                                    <li><a href="../auth/usuarios/registrarUsuarios.html" class="block xl:text-xl gap-3 py-2 px-4 rounded-lg hover:bg-slate-900 transition-colors">Crear Usuario</a></li>
+                                    <li><a href="../admin/listarUsuarios.html" class="xl:text-xl block gap-3 py-2 px-4 rounded-lg hover:bg-slate-900 transition-colors">Listar Usuarios</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -102,7 +101,7 @@
                     <ul class="flex flex-col gap-4">
                         
                         <li>
-                            <a href="../auth/login.html" class="xl:text-xl flex items-center gap-3 py-2 px-4 rounded-lg hover:bg-slate-900 transition-colors" onclick="logout()"><i class="bi bi-box-arrow-left text-sky-400"></i>Cerrar Sesión</a>
+                            <a href="../auth/login.html" id="logout-btn" class="xl:text-xl flex items-center gap-3 py-2 px-4 rounded-lg hover:bg-slate-900 transition-colors"><i class="bi bi-box-arrow-left text-sky-400"></i>Cerrar Sesión</a>
                         </li>
                     </ul>
                 </nav>
@@ -128,6 +127,31 @@
                    
         </div>
     </section>
+
+    <script src="../../js/axios.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                //Si no existe un token redirige al login
+                window.location.href = '../auth/login.html';
+            }
+
+            //Cerrar Sesión
+            const CerrarSesión = document.getElementById('logout-btn');
+
+            //Cuando el usuario haga clic en el btn de cerrar sesión
+            CerrarSesión.addEventListener('click', () => {
+                //Borra el token del localStorage
+                localStorage.removeItem('token');
+
+                //Redirige al login
+                window.location.href = '../auth/login.html';
+
+            });
+        });
+    </script>
         
     <!-- <script src="../../api/entidades.api.js"></script> -->
     <script src="../../js/menuToggle.js"></script>

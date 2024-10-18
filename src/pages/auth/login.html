@@ -10,6 +10,10 @@
     <!-- boostrap Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
 
+    <!-- Scripts para usar axios -->
+    <!-- <script src="../../../node_modules/axios/dist/axios.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
     <!-- Estilos -->
     <link href="../../output.css" rel="stylesheet">
 
@@ -30,7 +34,7 @@
                     
                     <!-- Contraseña -->
                     <label for="contraseña" class="flex font-semibold gap-2 items-center tracking-[5px]"><i class="bi bi-bag"></i>Contraseña</label>
-                    <input type="password" class="w-full rounded-md p-2 text-stone-600 font-medium" name="password" id="contraseña" placeholder="Escriba la contraseña">
+                    <input type="password" class="w-full rounded-md p-2 text-stone-600 font-medium" name="password" id="password" placeholder="Escriba la contraseña">
                     <span></span>
 
                     <!-- btn -->
@@ -51,8 +55,9 @@
            
         </section>
     </main>
-    <script src="/js/validacionesLogin.js"></script>
-    <script src="/js/login.js"></script>
+    <!-- <script src="/js/validacionesLogin.js"></script> -->
+    <!-- <script src="/js/login.js"></script> -->
+     <script src="../../api/usuarios.api.js"></script>
     
 </body>
 </html>

@@ -13,10 +13,6 @@
     <!-- Estilos de tailwind -->
     <link href="../../../output.css" rel="stylesheet">
 
-    <!-- Scripts para usar axios -->
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <!-- <script src="../../../../node_modules/axios/dist/axios.min.js"></script> -->
-
     <title>Actualizar Usuarios</title>
 </head>
 
@@ -71,6 +67,19 @@
             </div>
         </section>
     </main>
+    <script src="../../js/axios.min.js"></script>
+
+    <!-- <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                //Si no existe un token redirige a login
+                window.location.href = '../auth/login.html';
+            }
+
+        });
+    </script> -->
+    
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Obtener la URL actual
@@ -91,6 +100,7 @@
         
          
     </script>
+
     <!-- <script src="../../../js/validacionesEntidades.js"></script> -->
     <script src="../../../api/usuarios.api.js"></script>
     

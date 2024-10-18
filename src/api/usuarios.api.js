@@ -3,6 +3,7 @@ const API = axios.create({
     // baseURL: 'http://localhost:5000/api/usuarios',
     headers: {
         'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
       },
 });
 
@@ -256,3 +257,34 @@ function mostrarMensaje(mensaje, clase) {
     mensajeElemento.className = `mensaje-respuesta ${clase} mt-4`;
     formulario.appendChild(mensajeElemento);
 };
+
+// ---------------------------------------- // ------------------------------------
+
+//desde aca empieza lo de iniciar sesión
+const loginForm = document.getElementById('login');
+
+loginForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    try {
+        const respuesta = await API.post('/login', { email, password });
+
+        if (respuesta.data.token) {
+            //Si el login es exitoso almacenamos el token
+            localStorage.setItem('token', respuesta.data.token);
+            console.log('Iniciaste sesión con éxito', respuesta.data);
+
+            window.location.href = `${baseURL}/src/pages/admin/home.html`;
+            
+        }else {
+            console.error('Error al iniciar sesión: No se recibió el token');
+        }        
+        
+    } catch (err) {
+        console.error('Error en el login:', err.response ? err.response.data : err.message);        
+    }
+})
+

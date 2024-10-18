@@ -13,10 +13,6 @@
     <!-- Estilos -->
     <link href="../../output.css" rel="stylesheet">
 
-    <!-- Scripts para usar axios -->
-    <!-- <script src="../../../node_modules/axios/dist/axios.min.js"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    
     <title>Home</title>
 
 </head>
@@ -102,7 +98,7 @@
                     <ul class="flex flex-col gap-4">
                         
                         <li>
-                            <a href="../auth/login.html" class="xl:text-xl flex items-center gap-3 py-2 px-4 rounded-lg hover:bg-slate-900 transition-colors" onclick="logout()"><i class="bi bi-box-arrow-left text-sky-400"></i>Cerrar Sesión</a>
+                            <a href="../auth/login.html" id="logout-btn" class="xl:text-xl flex items-center gap-3 py-2 px-4 rounded-lg hover:bg-slate-900 transition-colors"><i class="bi bi-box-arrow-left text-sky-400"></i>Cerrar Sesión</a>
                         </li>
                     </ul>
                 </nav>
@@ -145,10 +141,34 @@
                    
         </div>
     </section>
-        
+    <script src="../../js/axios.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                //Si no existe un token redirige a login
+                window.location.href = '../auth/login.html';
+            }
+            //Cerrar Sesión
+            const CerrarSesión = document.getElementById('logout-btn');
+
+            //Cuando el usuario haga clic en el btn de cerrar sesión
+            CerrarSesión.addEventListener('click', () => {
+                //Borra el token del localStorage
+                localStorage.removeItem('token');
+
+                //Redirige al login
+                window.location.href = '../auth/login.html';
+
+            });
+
+        });
+    </script>
+
     <script src="../../api/usuarios.api.js"></script>
     <script src="../../js/menuToggle.js"></script>
     
     
 </body>
-</html>
+</html>localStorage.getItem('token')

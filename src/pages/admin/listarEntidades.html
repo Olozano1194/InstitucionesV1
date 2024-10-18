@@ -13,10 +13,7 @@
     <!-- Estilos -->
     <link href="../../output.css" rel="stylesheet">
 
-    <!-- Scripts para usar axios -->
-    <!-- <script src="../../../node_modules/axios/dist/axios.min.js"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    
+        
     <title>Home</title>
 
 </head>
@@ -147,10 +144,32 @@
                    
         </div>
     </section>
+    <script src="../../js/axios.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                //Si no existe un token redirige a login
+                window.location.href = '../auth/login.html';
+            }
+            //Cerrar Sesión
+            const CerrarSesión = document.getElementById('logout-btn');
+
+            //Cuando el usuario haga clic en el btn de cerrar sesión
+            CerrarSesión.addEventListener('click', () => {
+                //Borra el token del localStorage
+                localStorage.removeItem('token');
+
+                //Redirige al login
+                window.location.href = '../auth/login.html';
+
+            });
+
+        });
+    </script>
         
     <script src="../../api/entidades.api.js"></script>
-    <script src="../../js/menuToggle.js"></script>
-    
-    
+    <script src="../../js/menuToggle.js"></script>    
 </body>
 </html>
