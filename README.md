@@ -183,7 +183,7 @@ Para crear el proyecto se necesita hacer lo siguiente:
                         }));
                       ```
                 
-            - Tambien tenemos que tener otra terminar para inicializar el bak
+            - Tambien tenemos que tener otra terminar para inicializar el back
 
                 - ```bash
                     node app.js
