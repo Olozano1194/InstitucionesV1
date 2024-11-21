@@ -53,44 +53,55 @@
                     <h1 class="text-center text-2xl xl:text-4xl font-black text-white mb-10">Admin<span class="text-sky-500">.</span></h1>
             
                     <nav>
+                         <!-- Home -->
+                         <ul>
+                            <li class=""><a href="../admin/home.html" class="xl:text-xl flex items-center gap-3 py-2 px-4 rounded-lg hover:bg-slate-900 transition-colors">Home</a></li>
+                        </ul>
+                        <!-- Asistencia -->
                         <ul>
                             <li class=""><a href="" class="xl:text-xl flex items-center gap-3 py-2 px-4 rounded-lg hover:bg-slate-900 transition-colors">Asistencia</a></li>
-                        </ul>   
+                        </ul>
                         
+                        <!-- Evaluación -->
                         <ul>
                             <li><a href="" class="xl:text-xl flex items-center gap-3 py-2 px-4 rounded-lg hover:bg-slate-900 transition-colors">Evaluación</a></li>
                         </ul>
-            
+                        
+                        <!-- Grupo -->
                         <ul>
                             <li><a href="" class="xl:text-xl flex items-center gap-3 py-2 px-4 rounded-lg hover:bg-slate-900 transition-colors">Grupo</a></li>
                         </ul>
-            
+                        
+                        <!-- Estudiantes -->
                         <ul>
                             <li><a href="" class="xl:text-xl flex items-center gap-3 py-2 px-4 rounded-lg hover:bg-slate-900 transition-colors">Estudiantes</a></li>
                         </ul>
-            
+                        
+                        <!-- Profesores -->
                         <ul>
                             <li><a href="" class="xl:text-xl flex items-center gap-3 py-2 px-4 rounded-lg hover:bg-slate-900 transition-colors">Profesores</a></li>
                         </ul>
-            
+                        
+                        <!-- Instituciones -->
                         <ul>
                             <li class="relative group">
                                 <a href="#" class="xl:text-xl flex items-center gap-3 py-2 px-4 rounded-lg hover:bg-slate-900 transition-colors">Institución</a>
                                 <!-- submenu -->
                                 <ul class="absolute hidden group-hover:block bg-gray-800 rounded-lg shadow-lg z-10 transition-opacity duration-300 ease-in-out delay-100">
-                                    <li><a href="src/pages/auth/entidades/registrarEntidades.html" class="block xl:text-xl gap-3 py-2 px-4 rounded-lg hover:bg-slate-900 transition-colors">Crear Entidad</a></li>
-                                    <li><a href="src/pages/admin/listarEntidades.html" class="xl:text-xl block gap-3 py-2 px-4 rounded-lg hover:bg-slate-900 transition-colors">Listar Entidad</a></li>
+                                    <li><a href="/src/pages/auth/entidades/registrarEntidades.html" class="block xl:text-xl gap-3 py-2 px-4 rounded-lg hover:bg-slate-900 transition-colors">Crear Entidad</a></li>
+                                    <li><a href="/src/pages/admin/listarEntidades.html" class="xl:text-xl block gap-3 py-2 px-4 rounded-lg hover:bg-slate-900 transition-colors">Listar Entidad</a></li>
                                 </ul>
                             </li>
                         </ul>
-            
+                        
+                        <!-- Usuarios -->
                         <ul>
                             <li class="relative group">
                                 <a href="#" class="xl:text-xl flex items-center gap-3 py-2 px-4 rounded-lg hover:bg-slate-900 transition-colors">Usuarios</a>
                                 <!-- submenu -->
                                 <ul class="absolute hidden group-hover:block bg-gray-800 rounded-lg shadow-lg transition-opacity duration-300 ease-in-out delay-100">
-                                    <li><a href="src/pages/auth/usuarios/registrarUsuarios.html" class="block xl:text-xl gap-3 py-2 px-4 rounded-lg hover:bg-slate-900 transition-colors">Crear Usuario</a></li>
-                                    <li><a href="src/pages/admin/listarUsuarios.html" class="xl:text-xl block gap-3 py-2 px-4 rounded-lg hover:bg-slate-900 transition-colors">Listar Usuarios</a></li>
+                                    <li><a href="/src/pages/auth/registrarEstudiantes.html" class="block xl:text-xl gap-3 py-2 px-4 rounded-lg hover:bg-slate-900 transition-colors">Crear Usuario</a></li>
+                                    <li><a href="/src/pages/admin/listarUsuarios.html" class="xl:text-xl block gap-3 py-2 px-4 rounded-lg hover:bg-slate-900 transition-colors">Listar Usuarios</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -98,6 +109,7 @@
                 </div>
             
                 <nav>
+                    <!-- Cerrar Sesión -->
                     <ul class="flex flex-col gap-4">
                         
                         <li>
@@ -106,19 +118,33 @@
                     </ul>
                 </nav>
             
-            </aside>
-
-            
+            </aside>            
 
             <!-- Contenido Principal -->
             <main id="main-content" class="flex-1 p-6">
-                <h2 class="text-lg font-bold text-center mb-5 xl:text-3xl">Contenido Principal</h2>
-                <p class="text-lg xl:text-xl">Para el modulo de admin aca se va a ver un listado de instituciones, usuarios, alumnos y profesores....para la siguiente versión</p>
+                <!-- <h2 class="text-lg font-bold text-center mb-5 xl:text-3xl">Contenido Principal</h2>
+                <p class="text-lg xl:text-xl">Para el modulo de admin aca se va a ver un listado de instituciones, usuarios, alumnos y profesores....para la siguiente versión</p> -->
             
-                <div class="mt-6 bg-slate-800 p-6 rounded-lg shadow-md">
-                    <h3 class="text-lg font-bold text-center mb-6 xl:text-3xl">Toca colocar algo por aca</h3>
+                <section class="mt-6 bg-slate-800 p-6 rounded-lg shadow-md flex gap-5 flex-wrap justify-center md:justify-between md:p-10">
+                    <div class="card border-solid border-4 border-gray-600 p-5 w-56 h-36">
+                        <p class="text-4xl font-bold text-center mb-6 xl:text-3xl">50</p>
+                        <p class="text-lg font-bold text-center mb-6 xl:text-3xl">Estudiantes</p>
+                    </div>
+                    <div class="card border-solid border-4 border-gray-600 p-5 w-56 h-36">
+                        <p class="text-4xl font-bold text-center mb-6 xl:text-3xl">10</p>
+                        <p class="text-lg font-bold text-center mb-6 xl:text-3xl">Profesores</p>
+                    </div>
+                    <div class="card border-solid border-4 border-gray-600 p-5 w-56 h-36">
+                        <p id="numEntidades" class="text-4xl font-bold text-center mb-6 xl:text-3xl"></p>
+                        <p class="text-lg font-bold text-center mb-6 xl:text-3xl">Entidades</p>
+                    </div>
+                    <div class="card border-solid border-4 border-gray-600 p-5 w-56 h-36">
+                        <p id="numUsuarios" class="text-4xl font-bold text-center mb-6 xl:text-3xl"></p>
+                        <p class="text-lg font-bold text-center mb-6 xl:text-3xl">Usuarios</p>
+                    </div>
+                    
                                     
-                </div>
+                </section>
             
                 <button id="menu-toogle" class="xl:hidden fixed bottom-4 right-4 bg-sky-500 text-black p-3 rounded-full z-50">X</button>
             
@@ -153,7 +179,8 @@
         });
     </script>
         
-    <!-- <script src="../../api/entidades.api.js"></script> -->
+    <script src="../../api/entidades.api.js"></script>
+    <script src="../../api/usuarios.api.js"></script>
     <script src="../../js/menuToggle.js"></script>
     
     
