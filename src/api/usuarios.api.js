@@ -1,6 +1,6 @@
-const API = axios.create({
+const APIUSUARIO = axios.create({
     baseURL: 'https://api-instituciones.vercel.app/api/usuarios',
-    // baseURL: 'http://localhost:5000/api/usuarios',
+    //baseURL: 'http://localhost:5000/api/usuarios',
     headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + localStorage.getItem('token')
@@ -8,13 +8,13 @@ const API = axios.create({
 });
 
 
-const baseURL = window.location.origin;
+const baseURLUser = window.location.origin;
 
 //aca es para que pueda crear una usuario
-const formularioCrear = document.getElementById('formularios');
-if (formularioCrear) {
+const formularioCrearUsuario = document.getElementById('formularios');
+if (formularioCrearUsuario) {
      //Metodo crear usuarios
-    formularioCrear.addEventListener('submit', async (e) => {
+    formularioCrearUsuario.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         //capturamos los valores de los input y selects
@@ -34,7 +34,7 @@ if (formularioCrear) {
                 
             mostrarMensaje('Usuario creado con exito', 'text-green-500');
 
-            const url = `${baseURL}/src/pages/admin/listarUsuarios.html`;
+            const url = `${baseURLUser}/src/pages/admin/listarUsuarios.html`;
             window.location.href = url;
             
         } catch (err) {
@@ -46,22 +46,24 @@ if (formularioCrear) {
     
 }
 
-//Crear instituciones
+//Crear Usuarios
 const crearUsuario = async (datos) => {
     try {
         //Hacer la solicitud POST a la API
-        const respuesta = await API.post('/', datos);
+        const respuesta = await APIUSUARIO.post('/', datos);
         console.log('Usuario creado', respuesta.data);
         mostrarMensaje('Usuario creado exitosamente', 'text-green-500');
     
         //limpiar el formulario
-        formulario.reset(); 
+        formulario.reset();
+        
+        await obtenerCantidadUsuarios();
      
     } catch (err) {
-        console.error('Error al guardar los datos', err);
+        //console.error('Error al guardar los datos', err);
     
         //Mostrar mensaje de error
-        console.error('Error al crear el usuario:', err.response ? err.response.data : err.message);
+        //console.error('Error al crear el usuario:', err.response ? err.response.data : err.message);
         mostrarMensaje('Error al crear el usuario. Por favor, intente de nuevo.', 'text-red-500');
         } 
 
@@ -82,7 +84,7 @@ const ListarUsuarios = async () => {
     tbody.innerHTML = '';
 
     //Hacemos la petición get
-    API.get('/').then(respuesta => {
+    APIUSUARIO.get('/').then(respuesta => {
         //Recorremos la respuesta y creamos filas para la tabla
         const usuarios = respuesta.data;
 
@@ -117,9 +119,9 @@ const ListarUsuarios = async () => {
 ListarUsuarios();
 
 //aca empieza la condición para que se pueda actualizar el formulario
-const formularioActualizar = document.querySelector('.updateFormUser');
-if (formularioActualizar) {
-    formularioActualizar.addEventListener('submit', async (e) => {
+const formularioActualizarUsuario = document.querySelector('.updateFormUser');
+if (formularioActualizarUsuario) {
+    formularioActualizarUsuario.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     //capturamos los valores de los input y selects
@@ -145,7 +147,7 @@ if (formularioActualizar) {
                 console.error('No se encontro ID para el Usuario');
             }
             
-            const url = `${baseURL}/src/pages/admin/listarUsuarios.html`
+            const url = `${baseURLUser}/src/pages/admin/listarUsuarios.html`
             window.location.href = url;
             
         } catch (err) {
@@ -161,7 +163,7 @@ if (formularioActualizar) {
 //función para redirigir al archivo de actualización
 const editarUsuario = (id) => {
     //redirigir a la pagina actualizacion
-    const url = `${baseURL}/src/pages/auth/usuarios/actualizarUsuarios.html?id=${id}`;
+    const url = `${baseURLUser}/src/pages/auth/usuarios/actualizarUsuarios.html?id=${id}`;
     console.log('Redirigiendo:', url);
     
     window.location.href = url;
@@ -172,7 +174,7 @@ const editarUsuario = (id) => {
 const cargarDatosUsuario = async (id) => {
     try {
         //Hacemos la solicitud get para obtener los datos del usuario
-        const response = await API.get(`/${id}`);
+        const response = await APIUSUARIO.get(`/${id}`);
         const usuario = response.data;
         
         
@@ -201,15 +203,15 @@ const cargarDatosUsuario = async (id) => {
 const actualizarUsuario = async (id, datos) => {
     
     try {
-        console.log('ID que se está enviando para actualización:', id);
-        console.log('Datos que se están enviando:', datos);
+        //console.log('ID que se está enviando para actualización:', id);
+        //console.log('Datos que se están enviando:', datos);
         //Hacemos la solicitud put para actualizar los datos de la institución
-        const response = await API.put(`/${id}`, datos);
-        console.log('Usuario actualizado', response.data);
+        const response = await APIUSUARIO.put(`/${id}`, datos);
+        //console.log('Usuario actualizado', response.data);
         return response.data;
                    
     }catch(err) {
-        console.error('No se pudo actualizar el usuario', err);
+        //console.error('No se pudo actualizar el usuario', err);
         mostrarMensaje('Error al actualizar el usuario. Por favor, intente de nuevo.', 'text-red-500');
     }
 
@@ -223,17 +225,13 @@ const eliminarUsuario = async (id) => {
     
     try {
         //Hacemos la petición delete
-        API.delete(`/${id}`).then(respuesta => {
+        const respuesta = APIUSUARIO.delete(`/${id}`);
             //Si la respuesta es exitosa, actualizamos la tabla
-            console.log('Usuario eliminada con éxito', respuesta.data);
-            ListarUsuarios();
-            
-            })
-            
+            await ListarUsuarios();     
+            await obtenerCantidadUsuarios();      
         
     } catch(err) {
-
-        console.error('No se pudo eliminar el usuario', err);
+        //console.error('No se pudo eliminar el usuario', err);
         alert('No se pudo eliminar el usuario');
     };
     
@@ -259,32 +257,59 @@ function mostrarMensaje(mensaje, clase) {
 };
 
 // ---------------------------------------- // ------------------------------------
-
 //desde aca empieza lo de iniciar sesión
-const loginForm = document.getElementById('login');
+const login = async => {
+    const loginForm = document.getElementById('login');
 
-loginForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-
-    try {
-        const respuesta = await API.post('/login', { email, password });
-
-        if (respuesta.data.token) {
-            //Si el login es exitoso almacenamos el token
-            localStorage.setItem('token', respuesta.data.token);
-            console.log('Iniciaste sesión con éxito', respuesta.data);
-
-            window.location.href = `${baseURL}/src/pages/admin/home.html`;
-            
-        }else {
-            console.error('Error al iniciar sesión: No se recibió el token');
-        }        
+    if (!loginForm) {
+        return;
+    
+    }else {
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
         
-    } catch (err) {
-        console.error('Error en el login:', err.response ? err.response.data : err.message);        
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+        
+            try {
+                const respuesta = await APIUSUARIO.post('/login', { email, password });
+        
+                if (respuesta.data.token) {
+                    //Si el login es exitoso almacenamos el token
+                    localStorage.setItem('token', respuesta.data.token);
+                    //console.log('Iniciaste sesión con éxito', respuesta.data);
+        
+                    window.location.href = `${baseURLUser}/src/pages/admin/home.html`;
+                    
+                }       
+            } catch (err) {
+                      
+            }
+        })
     }
-})
+
+}
+
+// Ruta para obtener la cantidad de usuarios
+const obtenerCantidadUsuarios = async () => {
+    try {
+        const respuesta = await APIUSUARIO.get('/');
+        //console.log('Respuesta del backend:', respuesta.data);
+        
+        //Obtener la cantidad de instituciones
+        const cantidadUsuario = respuesta.data.length;
+        //console.log('Cantidad de entidades:', cantidadEntidades);
+
+        //Actualizar el contenido del parrafo con el nuevo número de las intituciones
+        const cantidadElementoUsuario = document.getElementById('numUsuarios');
+        if (cantidadElementoUsuario) {
+            cantidadElementoUsuario.textContent = cantidadUsuario;
+            
+        }
+    }catch (error) {
+        console.error('No se pudo obtener la cantidad de instituciones', error);
+    }
+};
+
+document.addEventListener('DOMContentLoaded', obtenerCantidadUsuarios);
 
