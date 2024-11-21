@@ -34,7 +34,7 @@ if (formularioCrear) {
         try {
             // Crear entidad
             const resultado = await crearInstitucion(datos);
-            console.log('Resultado de la creación', resultado);
+            //console.log('Resultado de la creación', resultado);
                 
             mostrarMensaje('Institución creada con exito', 'text-green-500');
 
@@ -42,7 +42,7 @@ if (formularioCrear) {
             window.location.href = url;
             
         } catch (err) {
-            console.error('Error al procesar la solicitud:', err);
+            //console.error('Error al procesar la solicitud:', err);
             mostrarMensaje('Error al procesar la solicitud', 'text-red-500');
             
         }
@@ -55,17 +55,20 @@ const crearInstitucion = async (datos) => {
     try {
         //Hacer la solicitud POST a la API
         const respuesta = await API.post('/', datos);
-        console.log('Institución creada', respuesta.data);
+        //console.log('Institución creada', respuesta.data);
         mostrarMensaje('Institución creada exitosamente', 'text-green-500');
     
         //limpiar el formulario
         formulario.reset(); 
+
+        //Actualizar el contador de entidades
+        await obtenerCantidadInstituciones();
      
     } catch (err) {
-        console.error('Error al guardar los datos', err);
+        //console.error('Error al guardar los datos', err);
     
         //Mostrar mensaje de error
-        console.error('Error al crear la institución:', err.response ? err.response.data : err.message);
+        //console.error('Error al crear la institución:', err.response ? err.response.data : err.message);
         mostrarMensaje('Error al crear la institución. Por favor, intente de nuevo.', 'text-red-500');
         } 
 
@@ -247,21 +250,16 @@ const eliminarInstitucion = async (id) => {
     
     try {
         //Hacemos la petición delete
-        API.delete(`/${id}`).then(respuesta => {
-            //Si la respuesta es exitosa, actualizamos la tabla
-            console.log('Institución eliminada con éxito', respuesta.data);
-            ListarInstituciones();
-            
-            })
-            
+        const respuesta = await API.delete(`/${id}`);            
         
-    } catch(err) {
+        //Actualizamos el contador
+        await obtenerCantidadInstituciones();
 
-        console.error('No se pudo eliminar la institución', err);
-        alert('No se pudo eliminar la institución');
-    };
-    
-   
+        await ListarInstituciones();       
+    } catch(err) {
+        //console.error('No se pudo eliminar la institución', err);
+        alert('Error al eliminar la institución');
+    };   
 }
 
 //funcion para mostrar mensajes
@@ -281,4 +279,28 @@ function mostrarMensaje(mensaje, clase) {
     mensajeElemento.className = `mensaje-respuesta ${clase} mt-4`;
     formulario.appendChild(mensajeElemento);
 };
+
+// Ruta para obtener la cantidad de entidades
+const obtenerCantidadInstituciones = async () => {
+    try {
+        const respuesta = await API.get('/');
+        //console.log('Respuesta del backend:', respuesta.data);
+        
+        //Obtener la cantidad de instituciones
+        const cantidadEntidades = respuesta.data.length;
+        //console.log('Cantidad de entidades:', cantidadEntidades);
+
+        //Actualizar el contenido del parrafo con el nuevo número de las intituciones
+        const cantidadElementoEntidad = document.getElementById('numEntidades');
+        if (cantidadElementoEntidad) {
+            cantidadElementoEntidad.textContent = cantidadEntidades;
+            
+        }
+    }catch (error) {
+        console.error('No se pudo obtener la cantidad de instituciones', error);
+    }
+};
+
+document.addEventListener('DOMContentLoaded', obtenerCantidadInstituciones);
+
 
