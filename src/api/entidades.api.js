@@ -80,7 +80,7 @@ const ListarInstituciones = async () => {
 
     //Verificamos si existe el tbody antes de proceder
     if (!tbody) {
-        console.error('No se encontró el elemento #institucionesTable');
+        //console.error('No se encontró el elemento #institucionesTable');
         return; //si no existe, salimos de la función para evitar errores
         
     }

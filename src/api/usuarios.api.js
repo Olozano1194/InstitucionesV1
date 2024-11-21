@@ -75,7 +75,7 @@ const ListarUsuarios = async () => {
 
     //Verificamos si existe el tbody antes de proceder
     if (!tbody) {
-        console.error('No se encontró el elemento #usuariosTable');
+        //console.error('No se encontró el elemento #usuariosTable');
         return; //si no existe, salimos de la función para evitar errores
         
     }
