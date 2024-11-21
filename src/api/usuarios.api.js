@@ -289,6 +289,7 @@ const login = async => {
     }
 
 }
+login()
 
 // Ruta para obtener la cantidad de usuarios
 const obtenerCantidadUsuarios = async () => {
