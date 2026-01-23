@@ -1,6 +1,6 @@
 const APIUSUARIO = axios.create({
-    baseURL: 'https://api-instituciones.vercel.app/api/usuarios',
-    //baseURL: 'http://localhost:5000/api/usuarios',
+    baseURL: 'https://api-instituciones.vercel.app/api/usuario',
+    //baseURL: 'http://localhost:5000/api/usuario',
     headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + localStorage.getItem('token')
@@ -292,25 +292,25 @@ const login = async => {
 login()
 
 // Ruta para obtener la cantidad de usuarios
-const obtenerCantidadUsuarios = async () => {
-    try {
-        const respuesta = await APIUSUARIO.get('/');
-        //console.log('Respuesta del backend:', respuesta.data);
+// const obtenerCantidadUsuarios = async () => {
+//     try {
+//         const respuesta = await APIUSUARIO.get('/');
+//         //console.log('Respuesta del backend:', respuesta.data);
         
-        //Obtener la cantidad de instituciones
-        const cantidadUsuario = respuesta.data.length;
-        //console.log('Cantidad de entidades:', cantidadEntidades);
+//         //Obtener la cantidad de instituciones
+//         const cantidadUsuario = respuesta.data.length;
+//         //console.log('Cantidad de entidades:', cantidadEntidades);
 
-        //Actualizar el contenido del parrafo con el nuevo número de las intituciones
-        const cantidadElementoUsuario = document.getElementById('numUsuarios');
-        if (cantidadElementoUsuario) {
-            cantidadElementoUsuario.textContent = cantidadUsuario;
+//         //Actualizar el contenido del parrafo con el nuevo número de las intituciones
+//         const cantidadElementoUsuario = document.getElementById('numUsuarios');
+//         if (cantidadElementoUsuario) {
+//             cantidadElementoUsuario.textContent = cantidadUsuario;
             
-        }
-    }catch (error) {
-        console.error('No se pudo obtener la cantidad de instituciones', error);
-    }
-};
+//         }
+//     }catch (error) {
+//         console.error('No se pudo obtener la cantidad de instituciones', error);
+//     }
+// };
 
-document.addEventListener('DOMContentLoaded', obtenerCantidadUsuarios);
+// document.addEventListener('DOMContentLoaded', obtenerCantidadUsuarios);
 
