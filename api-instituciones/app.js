@@ -17,7 +17,7 @@ import municipioRoutes from './routes/municipioRoutes.js';
 import usuarioRoutes from './routes/usuarioRoutes.js';
 import rolRoutes from './routes/rolRoutes.js';
 import estudianteRoutes from './routes/estudianteRoutes.js';
-import profesorRoutes from './routes/profesorRoutes.js';
+import profesorRoutes  from './routes/profesorRoutes.js';
 import adminRoutes from './routes/adminRoutes.js';
 
 const __filename = fileURLToPath(import.meta.url);

@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 // const Usuario = require('./usuarioModel');
 
 const GrupoSchema = new mongoose.Schema({
@@ -60,7 +60,7 @@ const EstudianteSchema = new mongoose.Schema({
     { timestamps: true     
 });
 
-const Estudiantes = mongoose.model('Estudiante', EstudianteSchema);
+export default mongoose.model('Estudiante', EstudianteSchema);
 
-module.exports = Estudiantes;
+
 

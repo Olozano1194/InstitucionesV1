@@ -1,4 +1,4 @@
-const Departamento = require('../models/departamentoModel');
+import Departamento from '../models/departamentoModel.js';
 
 const getDepartamentos = async (req, res) => {
     try {
@@ -9,4 +9,4 @@ const getDepartamentos = async (req, res) => {
     }
 };
 
-module.exports = { getDepartamentos };
+export default getDepartamentos;

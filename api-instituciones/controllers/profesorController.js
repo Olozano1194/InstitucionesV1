@@ -1,8 +1,8 @@
-const Profesor = require('../models/profesorModel');
+import Profesor from '../models/profesorModel.js';
 
 
 // Obtener todas los Usuarios
-const getProfesores = async (req, res) => {
+export const getProfesores = async (req, res) => {
     try {
         const profesor = await Profesor.find()
         .populate('id_usuario', 'email')
@@ -23,7 +23,7 @@ const getProfesores = async (req, res) => {
 };
 
 // Obtener un Estudiante por ID
-const getProfesorById = async (req, res) => {
+export const getProfesorById = async (req, res) => {
     try {
         const userId = req.user.id;
         const profesor = await Profesor.findOne({ id_usuario: userId });       
@@ -38,7 +38,7 @@ const getProfesorById = async (req, res) => {
 };
 
 // Actualizar un Estudiante
-const updateProfesor = async (req, res) => {
+export const updateProfesor = async (req, res) => {
     // console.log('Inicio de actualización');
     const { id } = req.params;
     const updates = req.body;
@@ -71,7 +71,7 @@ const updateProfesor = async (req, res) => {
 };
 
 // Eliminar un Usuario
-const deleteProfesor = async (req, res) => {
+export const deleteProfesor = async (req, res) => {
     try {
         const profesorEliminado = await Profesor.findByIdAndDelete(req.params.id);
         if (!profesorEliminado) {
@@ -81,11 +81,4 @@ const deleteProfesor = async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
-};
-
-module.exports = {
-    getProfesores,
-    getProfesorById,
-    updateProfesor,
-    deleteProfesor
 };

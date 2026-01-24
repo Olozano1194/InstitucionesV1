@@ -1,14 +1,14 @@
-const express = require('express');
-const router = express.Router();
-const {
+import express from 'express';
+import {
     getRoles,
     getRolById,
     createRol,
     updateRol,
     deleteRol
-} = require('../controllers/rolController');
-const protegerRutas = require('../middleware/proteccionRutas/authMiddleware.js');
+} from '../controllers/rolController.js';
+import protegerRutas from '../middleware/proteccionRutas/authMiddleware.js';
 
+const router = express.Router();
 
 // Rutas publicas
 router.get('/', getRoles);
@@ -19,4 +19,4 @@ router.post('/', protegerRutas, createRol);
 router.put('/:id', protegerRutas, updateRol);
 router.delete('/:id', protegerRutas, deleteRol);
 
-module.exports = router;
+export default router;

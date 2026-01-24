@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 // const Departamentos = require('./departamentoModel') 
 
 const MunicipioModel = new mongoose.Schema({
@@ -17,4 +17,4 @@ const MunicipioModel = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('Municipio', MunicipioModel);
+export default mongoose.model('Municipio', MunicipioModel);

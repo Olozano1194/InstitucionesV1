@@ -1,4 +1,4 @@
-const Departamento = require('../models/departamentoModel');
+import Departamento from '../models/departamentoModel.js';
 
 
 const getDepartamentos = async () => {
@@ -31,4 +31,4 @@ const CargarDatos = async (req, res) => {
 };
 CargarDatos
 
-module.exports = getDepartamentos 
+export default getDepartamentos; 

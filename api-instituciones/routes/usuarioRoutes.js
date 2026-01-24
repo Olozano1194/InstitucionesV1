@@ -1,15 +1,16 @@
-const express = require('express');
-const protegerRutas = require('../middleware/proteccionRutas/authMiddleware.js');
-const router = express.Router();
-const {
+import express  from 'express';
+import protegerRutas  from '../middleware/proteccionRutas/authMiddleware.js';
+import {
     getUsuarios,
     createUsuario,
     getUsuarioById,
     updateUsuario,
     deleteUsuario,
     loginUsuario    
-} = require('../controllers/usuariosController.js');
-const upload = require('../middleware/upload.js');
+}  from '../controllers/usuariosController.js';
+import upload  from '../middleware/upload.js';
+
+const router = express.Router();
 
 /**
  * @swagger
@@ -141,4 +142,4 @@ router.put('/:id', protegerRutas, upload.single('fotoPerfil'), updateUsuario);
 router.delete('/:id', protegerRutas, deleteUsuario);
 
 
-module.exports = router;
+export default router;

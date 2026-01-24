@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const Rol = require('../models/rolModel');
+import mongoose from 'mongoose';
+import Rol from '../models/rolModel.js';
 
 const initRoles = async () => {
     // Esperamos a que la conexión este lista
@@ -46,4 +46,4 @@ const initRoles = async () => {
     }
 };
 
-module.exports = initRoles;
+export default initRoles;

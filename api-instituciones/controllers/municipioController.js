@@ -1,6 +1,6 @@
-const Municipio = require('../models/municipioModel');
+import Municipio from '../models/municipioModel.js';
 
-const getMunicipios = async (req, res) => {
+export const getMunicipios = async (req, res) => {
     try {
         const municipios = await Municipio.find();
         res.status(200).json(municipios);
@@ -10,7 +10,7 @@ const getMunicipios = async (req, res) => {
 };
 
 // Obtener una municipio por ID
-const getMunicipalityByDepartament = async (req, res) => {
+export const getMunicipalityByDepartament = async (req, res) => {
     try {
         const { departamento } = req.query;
         
@@ -34,5 +34,3 @@ const getMunicipalityByDepartament = async (req, res) => {
             error: error.message });
     }
 };
-
-module.exports = { getMunicipios, getMunicipalityByDepartament };

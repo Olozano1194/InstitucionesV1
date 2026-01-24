@@ -1,7 +1,7 @@
-const Rol = require('../models/rolModel');
+import Rol from '../models/rolModel.js';
 
 //Obtener todos los roles
-const getRoles = async (req, res) => {
+export const getRoles = async (req, res) => {
     try {
         const roles = await Rol.find({ activo: true });
         res.status(200).json(roles);
@@ -13,7 +13,7 @@ const getRoles = async (req, res) => {
 };
 
 //Obtener un rol por ID
-const getRolById = async (req, res) => {
+export const getRolById = async (req, res) => {
     try {
         const rol = await Rol.findById(req.params.id);
         if (!rol) {
@@ -28,7 +28,7 @@ const getRolById = async (req, res) => {
     };
 };
 // Crear un rol
-const createRol = async (req, res) => {
+export const createRol = async (req, res) => {
     try {
         //Verificamos si el rol existe
         const rolExiste = await Rol.findOne({ nombre: req.body.nombre.toLowerCase() });
@@ -52,7 +52,7 @@ const createRol = async (req, res) => {
     };
 };
 // Actualizar un rol
-const updateRol = async (req, res) => {
+export const updateRol = async (req, res) => {
     try {
         const rolActualizado = await Rol.findByIdAndUpdate(
             req.params.id,
@@ -74,7 +74,7 @@ const updateRol = async (req, res) => {
     };
 };
 // Eliminar un rol
-const deleteRol = async (req, res) => {
+export const deleteRol = async (req, res) => {
     try {
         const rolEliminado = await Rol.findByIdAndDelete(
             req.params.id,
@@ -91,12 +91,4 @@ const deleteRol = async (req, res) => {
             error: error.message
         });
     };
-};
-
-module.exports = {
-    createRol,
-    getRoles,
-    getRolById,
-    updateRol,
-    deleteRol    
 };

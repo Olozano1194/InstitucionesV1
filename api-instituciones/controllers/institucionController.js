@@ -1,10 +1,10 @@
-const Estudiantes = require('../models/estudiantesModel');
-const Profesor = require('../models/profesorModel');
-const Institucion = require('../models/institucionModel');
-const mongoose = require('mongoose');
+import Estudiantes from '../models/estudiantesModel.js';
+import Profesor from '../models/profesorModel.js';
+import Institucion from '../models/institucionModel.js';
+import mongoose from 'mongoose';
 
 // Obtener todas las instituciones
-const getInstituciones = async (req, res) => {
+export const getInstituciones = async (req, res) => {
     try {
         const instituciones = await Institucion.find().sort({ createdAt: -1 })
         .populate('iddepartamento', 'descripcion')
@@ -20,7 +20,7 @@ const getInstituciones = async (req, res) => {
 };
 
 // Crear una nueva institución
-const createInstitucion = async (req, res) => {
+export const createInstitucion = async (req, res) => {
     try {
         const { estudiantes = [], profesores = [] } = req.body;
        
@@ -81,7 +81,7 @@ const createInstitucion = async (req, res) => {
 };
 
 // Obtener una institución por ID
-const getInstitucionById = async (req, res) => {
+export const getInstitucionById = async (req, res) => {
     try {
         const institucion = await Institucion.findById(req.params.id);
         if (!institucion) {
@@ -94,7 +94,7 @@ const getInstitucionById = async (req, res) => {
 };
 
 // Actualizar una institución
-const updateInstitucion = async (req, res) => {
+export const updateInstitucion = async (req, res) => {
     try {
         const institucionActualizada = await Institucion.findByIdAndUpdate(req.params.id, req.body, { new: true });
         if (!institucionActualizada) {
@@ -107,7 +107,7 @@ const updateInstitucion = async (req, res) => {
 };
 
 // Eliminar una institución
-const deleteInstitucion = async (req, res) => {
+export const deleteInstitucion = async (req, res) => {
     try {
         const institucionEliminada = await Institucion.findByIdAndDelete(req.params.id);
         if (!institucionEliminada) {
@@ -117,12 +117,4 @@ const deleteInstitucion = async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
-};
-
-module.exports = {
-    getInstituciones,
-    createInstitucion,
-    getInstitucionById,
-    updateInstitucion,
-    deleteInstitucion
 };

@@ -1,12 +1,13 @@
-const express = require('express');
-const protegerRutas = require('../middleware/proteccionRutas/authMiddleware.js');
-const router = express.Router();
-const {
+import express from 'express';
+import protegerRutas from '../middleware/proteccionRutas/authMiddleware.js';
+import {
     getAdministradores,
     getAdministradorById,
     updateAdministrador,
     deleteAdministrador      
-} = require('../controllers/adminController.js');
+} from '../controllers/adminController.js';
+
+const router = express.Router();
 
 
 /**
@@ -113,4 +114,4 @@ router.put('/:id', protegerRutas, updateAdministrador);
 router.delete('/:id', protegerRutas, deleteAdministrador);
 
 
-module.exports = router;
+export default router;

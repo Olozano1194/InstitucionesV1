@@ -1,6 +1,7 @@
-const express = require('express');
+import express from 'express';
+import getDepartamentos from '../controllers/departamentoController.js';
+
 const router = express.Router();
-const { getDepartamentos } = require('../controllers/departamentoController');
 
 /**
  * @swagger
@@ -20,4 +21,4 @@ const { getDepartamentos } = require('../controllers/departamentoController');
  */
 router.get('/', getDepartamentos);
 
-module.exports = router;
+export default router;

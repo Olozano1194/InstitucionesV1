@@ -1,6 +1,7 @@
-const express = require('express');
+import express from 'express';
+import { getMunicipios, getMunicipalityByDepartament } from '../controllers/municipioController.js';
+
 const router = express.Router();
-const { getMunicipios, getMunicipalityByDepartament } = require('../controllers/municipioController');
 
 /**
  * @swagger
@@ -23,4 +24,4 @@ router.get('/', getMunicipios);
 // 
 router.get('/by-departamento', getMunicipalityByDepartament);
 
-module.exports = router;
+export default router;

@@ -1,8 +1,8 @@
-const Estudiante = require('../models/estudiantesModel');
+import Estudiante from '../models/estudiantesModel.js';
 
 
 // Obtener todas los Usuarios
-const getEstudiantes = async (req, res) => {
+export const getEstudiantes = async (req, res) => {
     try {
         const estudiantes = await Estudiante.find()
         .populate('id_usuario', 'email')
@@ -26,7 +26,7 @@ const getEstudiantes = async (req, res) => {
 };
 
 // Obtener un Estudiante por ID
-const getEstudianteById = async (req, res) => {
+export const getEstudianteById = async (req, res) => {
     try {
         const userId = req.user.id;
         const estudiante = await Estudiante.findOne({ id_usuario: userId });            
@@ -42,7 +42,7 @@ const getEstudianteById = async (req, res) => {
 };
 
 // Actualizar un Estudiante
-const updateEstudiante = async (req, res) => {
+export const updateEstudiante = async (req, res) => {
     // console.log('Inicio de actualización');
     const { id } = req.params;
     const updates = req.body;
@@ -75,7 +75,7 @@ const updateEstudiante = async (req, res) => {
 };
 
 // Eliminar un Usuario
-const deleteEstudiante = async (req, res) => {
+export const deleteEstudiante = async (req, res) => {
     try {
         const estudianteEliminado = await Estudiante.findByIdAndDelete(req.params.id);
         if (!estudianteEliminado) {
@@ -85,11 +85,4 @@ const deleteEstudiante = async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
-};
-
-module.exports = {
-    getEstudiantes,
-    getEstudianteById,
-    updateEstudiante,
-    deleteEstudiante
 };

@@ -1,19 +1,20 @@
-const Usuario = require('../models/usuarioModel');
-const Estudiante = require('../models/estudiantesModel');
-const Profesor = require('../models/profesorModel');
-const Admin = require('../models/adminModel');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const Rol = require('../models/rolModel');
-const mongoose = require('mongoose');
+import Usuario from '../models/usuarioModel.js';
+import Estudiante from '../models/estudiantesModel.js';
+import Profesor from '../models/profesorModel.js';
+import Admin from '../models/adminModel.js';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import Rol from '../models/rolModel.js';
+import mongoose from 'mongoose';
 // const cloudinary = require('../config/cloudinary');
-const fs = require('fs');
+import fs from 'fs';
+import path from 'path';
+
 const fsp = fs.promises;
-const path = require('path');
 
 
 // Obtener todas los Usuarios
-const getUsuarios = async (req, res) => {
+export const getUsuarios = async (req, res) => {
     try {
         const usuarios = await Usuario.find().select('email rol').populate('rol', 'nombre').sort({ createdAt: -1 });        
         
@@ -42,7 +43,7 @@ const getUsuarios = async (req, res) => {
 };
 
 // Crear una nuevo Usuario
-const createUsuario = async (req, res) => {
+export const createUsuario = async (req, res) => {
     //const nuevoUsuario = new Usuario(req.body);
     try {
         // console.log('Datos recibidos:', req.body);        
@@ -160,7 +161,7 @@ const createUsuario = async (req, res) => {
 };
 
 // Obtener un Usuario por ID
-const getUsuarioById = async (req, res) => {
+export const getUsuarioById = async (req, res) => {
     try {
         const userId = req.user.id;
         const usuario = await Usuario.findById(userId)
@@ -184,7 +185,7 @@ const getUsuarioById = async (req, res) => {
 };
 
 // Actualizar un Usuario
-const updateUsuario = async (req, res) => {
+export const updateUsuario = async (req, res) => {
     // console.log('Inicio de actualización');
     const { id } = req.params;
     const updates = req.body;
@@ -248,7 +249,7 @@ const updateUsuario = async (req, res) => {
 };
 
 // Eliminar un Usuario
-const deleteUsuario = async (req, res) => {
+export const deleteUsuario = async (req, res) => {
     try {
         const usuarioEliminado = await Usuario.findByIdAndDelete(req.params.id);
         if (!usuarioEliminado) {
@@ -261,7 +262,7 @@ const deleteUsuario = async (req, res) => {
 };
 
 // Iniciar sesión
-const loginUsuario = async (req, res) => {
+export const loginUsuario = async (req, res) => {
     //console.log('Datos recibidos en el login:', req.body);    
     const { email, password } = req.body;
     
@@ -297,12 +298,3 @@ const loginUsuario = async (req, res) => {
         });
     }
 }
-
-module.exports = {
-    getUsuarios,
-    createUsuario,
-    getUsuarioById,
-    updateUsuario,
-    deleteUsuario,
-    loginUsuario    
-};

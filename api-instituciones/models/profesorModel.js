@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const ProfesorSchema = new mongoose.Schema({
     nombre: String,
@@ -15,6 +15,4 @@ const ProfesorSchema = new mongoose.Schema({
   
 });
 
-const Profesores = mongoose.model('Profesor', ProfesorSchema, 'profesores');
-
-module.exports = Profesores;
+export default mongoose.model('Profesor', ProfesorSchema, 'profesores');

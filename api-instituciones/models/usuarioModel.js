@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 // const Rol = require('./rolModel');
 
 const UsuarioModel = new mongoose.Schema({
@@ -17,6 +17,4 @@ const UsuarioModel = new mongoose.Schema({
     timestamps: true
 });
 
-const usuario = mongoose.model('Usuario', UsuarioModel, 'usuarios');
-
-module.exports = usuario;
+export default mongoose.model('Usuario', UsuarioModel, 'usuarios');

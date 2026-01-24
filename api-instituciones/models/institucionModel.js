@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 
 const PeriodoSchema = new mongoose.Schema({
@@ -26,8 +26,4 @@ const InstitucionSchema = new mongoose.Schema({
     timestamps: true
 });
 
-const Institucion = mongoose.model('Institucion', InstitucionSchema, 'instituciones');
-
-module.exports = Institucion;
-
-
+export default mongoose.model('Institucion', InstitucionSchema, 'instituciones');

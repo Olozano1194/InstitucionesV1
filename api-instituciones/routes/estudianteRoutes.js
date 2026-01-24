@@ -1,12 +1,13 @@
-const express = require('express');
-const protegerRutas = require('../middleware/proteccionRutas/authMiddleware.js');
-const router = express.Router();
-const {
+import express from 'express';
+import protegerRutas from '../middleware/proteccionRutas/authMiddleware.js';
+import {
     getEstudiantes,
     getEstudianteById,
     updateEstudiante,
     deleteEstudiante      
-} = require('../controllers/estudianteController.js');
+} from '../controllers/estudianteController.js';
+
+const router = express.Router();
 
 
 /**
@@ -113,4 +114,4 @@ router.put('/:id', protegerRutas, updateEstudiante);
 router.delete('/:id', protegerRutas, deleteEstudiante);
 
 
-module.exports = router;
+export default router;

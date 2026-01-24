@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const AdminSchema = new mongoose.Schema({
     nombre: String,
@@ -17,4 +17,4 @@ const AdminSchema = new mongoose.Schema({
 
 const Administradores = mongoose.model('Admin', AdminSchema, 'administradores');
 
-module.exports = Administradores;
+export default Administradores;

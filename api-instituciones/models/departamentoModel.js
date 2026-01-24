@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const DepartamentoModel = new mongoose.Schema({
     id_departamento: {
@@ -12,4 +12,5 @@ const DepartamentoModel = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('Departamento', DepartamentoModel);
+const Departamento = mongoose.model('Departamento', DepartamentoModel);
+export default Departamento;

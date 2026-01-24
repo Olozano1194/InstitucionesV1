@@ -1,4 +1,4 @@
-const Municipio = require('../models/municipioModel');
+import Municipio from '../models/municipioModel.js';
 
 
 const getMunicipio = async () => {
@@ -41,4 +41,4 @@ const CargarDatos = async (req, res) => {
 };
 CargarDatos
 
-module.exports = getMunicipio;
+export default getMunicipio;
