@@ -6,7 +6,6 @@ import { registerUser, getAllUsers, getUserById, updateUser, deleteUser, loginUs
  * @description Capa de abstracción sobre las peticiones HTTP de usuarios
  * SOLO maneja comunicación con el backend, NO lógica de negocio
  */
-
 export const usuariosAPI = {
   /**
    * Crear un nuevo usuario

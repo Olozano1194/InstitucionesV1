@@ -23,7 +23,7 @@ export const usuariosUI = {
     this.validator.init();
 
     // Listener del submit
-    form.addEventListener('submit', (e) => {console.log('🔥 Submit event disparado');this._handleSubmit(e)});
+    form.addEventListener('submit', (e) => this._handleSubmit(e));
   },
 
   /**
