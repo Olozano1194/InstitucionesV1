@@ -73,79 +73,61 @@ async function handleError(response) {
   }
 }
 
+export const apiClient = {
+  /**
+   * GET request
+   */
+  async get(endpoint, params = {}) {
+    const queryParams = new URLSearchParams(params).toString();
+    const url = queryParams ? `${endpoint}?${queryParams}` : endpoint;
+    
+    return apiRequest(url, {
+      method: 'GET',
+    });
+  },
+
+  /**
+   * POST request
+   */
+  async post(endpoint, data) {
+    return apiRequest(endpoint, {
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
+  },
+
+  /**
+   * PUT request
+   */
+  async put(endpoint, data) {
+    return apiRequest(endpoint, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+    });
+  },
+
+  /**
+   * DELETE request
+   */
+  async delete(endpoint) {
+    return apiRequest(endpoint, {
+      method: 'DELETE',
+    });
+  },
+
+  /**
+   * PATCH request
+   */
+  async patch(endpoint, data) {
+    return apiRequest(endpoint, {
+      method: 'PATCH',
+      body: JSON.stringify(data),
+    });
+  },
+};
+
 // ===================================
 // 🚀 Funciones específicas para cada endpoint
-// ===================================
-
-/**
- * LOGIN - Iniciar sesión
- */
-export async function loginUser(email, password) {
-  // ✅ Usar config.endpoints.usuarios
-  const data = await request(`${config.endpoints.usuarios}/login`, {
-    method: 'POST',
-    body: JSON.stringify({ email, password }),
-  });
-  
-  return data;
-}
-
-/**
- * REGISTRAR - Crear nuevo usuario
- */
-export async function registerUser(userData) {
-  const data = await request(config.endpoints.usuarios, {
-    method: 'POST',
-    body: JSON.stringify(userData),
-  });
-  
-  return data;
-}
-
-/**
- * OBTENER TODOS LOS USUARIOS
- */
-export async function getAllUsers(filters = {}) {
-  const queryParams = new URLSearchParams(filters).toString();
-  const endpoint = queryParams 
-    ? `${config.endpoints.usuarios}?${queryParams}`
-    : config.endpoints.usuarios;
-
-  return request(endpoint, {
-    method: 'GET',
-  });
-}
-
-/**
- * OBTENER UN USUARIO POR ID
- */
-export async function getUserById(id) {
-  return request(`${config.endpoints.usuarios}/${id}`, {
-    method: 'GET',
-  });
-}
-
-/**
- * ACTUALIZAR USUARIO
- */
-export async function updateUser(id, userData) {
-  return request(`${config.endpoints.usuarios}/${id}`, {
-    method: 'PUT',
-    body: JSON.stringify(userData),
-  });
-}
-
-/**
- * ELIMINAR USUARIO
- */
-export async function deleteUser(id) {
-  return request(`${config.endpoints.usuarios}/${id}`, {
-    method: 'DELETE',
-  });
-}
-
-// ===================================
-// 🎓 Puedes agregar más funciones para otras entidades
 // ===================================
 
 /**
