@@ -71,13 +71,9 @@
                         <option value="huila">Huila</option>
                         <option value="">La Guajira</option>
                         <option value="tolima">Tolima</option>
-                        <option value="">Valle del Cauca</option>
-
-
-                        
+                        <option value="">Valle del Cauca</option>                        
                     </select>
                     <span></span>
-
                     <!-- Capitales -->
                      <label for="capitales" class="flex font-semibold gap-2 items-center tracking-[5px]"><i class="bi bi-geo-alt"></i>Capitales</label>
                      <select id="capitales" name="capitales" class="w-full py-2 px-4 outline-none rounded-lg bg-slate-900 appearance-none select">
@@ -101,8 +97,7 @@
                         <option value="">Neiva</option>
                         <option value="">Riohacha</option>
                         <option value="ibague">Ibagué</option>
-                        <option value="">Cali</option>
-                        
+                        <option value="">Cali</option>                        
                     </select>
                     <span></span>
 
@@ -137,20 +132,24 @@
             </div>
         </section>
     </main>
-    <script src="../../../js/axios.min.js"></script>
+    <script type="module">
+        import { isAuthenticated, clearSession } from '../../../core/auth/session.js';
+        import { config } from '../../../core/config.js';
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const token = localStorage.getItem('token');
-            if (!token) {
-                //Si no existe un token redirige a login
-                window.location.href = '../auth/login.html';
-            }
+        // 1️⃣ Verificar si hay sesión activa
+        if (!isAuthenticated()) {
+            // Si no hay token válido, ir al login
+            window.location.replace(config.routes.login);
+        }
 
+        // 2️⃣ Logout
+        const logoutBtn = document.getElementById('logout-btn');
+        logoutBtn?.addEventListener('click', () => {
+            clearSession();
+            window.location.replace(config.routes.login);
         });
     </script>
-
-    <script src="../../../js/validacionesEntidades.js"></script>
-    <script src="../../../api/entidades.api.js"></script>
+    <script src="../../../js/validations/validacionesEntidades.js"></script>
+    <script src="../../../features/entidades/api/entidades.api.js"></script>
 </body>
 </html>

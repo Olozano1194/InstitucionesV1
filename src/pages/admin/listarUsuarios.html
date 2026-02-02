@@ -113,8 +113,6 @@
             <!-- Contenido Principal -->
             <main id="main-content" class="flex-1 p-6">
                 <h2 class="text-lg font-bold text-center mb-5 xl:text-3xl">Contenido Principal</h2>
-                <p class="text-lg xl:text-xl">Para el modulo de admin aca se va a ver un listado de instituciones, usuarios, alumnos y profesores....para la siguiente versión</p>
-            
                 <div class="mt-6 bg-slate-800 p-6 rounded-lg shadow-md">
                     <h3 class="text-lg font-bold text-center mb-6 xl:text-3xl">Lista de las Usuarios</h3>
                     
@@ -137,42 +135,30 @@
                         </tbody>
                       
                     </table>
-                </div>
-            
-                <button id="menu-toogle" class="xl:hidden fixed bottom-4 right-4 bg-sky-500 text-black p-3 rounded-full z-50">X</button>
-            
-            </main>
-            
-                   
+                </div>            
+                <button id="menu-toogle" class="xl:hidden fixed bottom-4 right-4 bg-sky-500 text-black p-3 rounded-full z-50">X</button>            
+            </main>  
         </div>
     </section>
-    <script src="../../js/axios.min.js"></script>
+    <script type="module">
+        import { isAuthenticated, clearSession } from '../../core/auth/session.js';
+        import { config } from '../../core/config.js';
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const token = localStorage.getItem('token');
-            if (!token) {
-                //Si no existe un token redirige a login
-                window.location.href = '../auth/login.html';
-            }
-            //Cerrar Sesión
-            const CerrarSesión = document.getElementById('logout-btn');
+        // 1️⃣ Verificar si hay sesión activa
+        if (!isAuthenticated()) {
+            // Si no hay token válido, ir al login
+            window.location.replace(config.routes.login);
+        }
 
-            //Cuando el usuario haga clic en el btn de cerrar sesión
-            CerrarSesión.addEventListener('click', () => {
-                //Borra el token del localStorage
-                localStorage.removeItem('token');
-
-                //Redirige al login
-                window.location.href = '../auth/login.html';
-
-            });
-
+        // 2️⃣ Logout
+        const logoutBtn = document.getElementById('logout-btn');
+        logoutBtn?.addEventListener('click', () => {
+            clearSession();
+            window.location.replace(config.routes.login);
         });
-    </script>
-
-    <script src="../../api/usuarios.api.js"></script>
-    <script src="../../js/menuToggle.js"></script>
+    </script>  
+    <script src="../../features/usuarios/api/usuarios.api.js"></script>
+    <script src="../../shared/components/menuToggle.js"></script>
     
     
 </body>

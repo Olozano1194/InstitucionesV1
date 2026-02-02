@@ -44,71 +44,70 @@ export const getUsuarios = async (req, res) => {
 
 // Crear una nuevo Usuario
 export const createUsuario = async (req, res) => {
-    //const nuevoUsuario = new Usuario(req.body);
     try {
-        // console.log('Datos recibidos:', req.body);        
-        //validación
-        const { email, password, rol } = req.body;
-        // console.log('Id del rol recibido:', rol);
+        const { email, password, rol, nombre, apellido } = req.body;
 
+        // Validaciones básicas
         if (!email || !password) {
-            return res.status(400).json({ message: "Email y contraseña son requeridos" });
+            return res.status(400).json({ 
+                message: "Email y contraseña son requeridos" 
+            });
         }
 
-        // Validación de rol (acepta ObjectId o string convertible)
         if (!rol) {
             return res.status(400).json({ 
                 message: "El rol es requerido" 
             });
         }
-        let rolId;
-        try {
-            rolId = new mongoose.Types.ObjectId(rol);
-        } catch (error) {
-            return res.status(400).json({
-                message: "Formato de ID del rol no válido"
-            });            
-        }        
-        // Validar que el rol existe
-        const rolExistente = await Rol.findById(rolId);
+
+        const rolExistente = await Rol.findOne({ 
+            nombre: { $regex: new RegExp(`^${rol}$`, 'i') } // Case insensitive
+        });
+
         if (!rolExistente) {
             return res.status(400).json({ 
-                message: 'El rol especificado no existe' 
+                message: `El rol "${rol}" no existe. Roles válidos: admin, docente, estudiante` 
             });
-        }      
-        //Verificamos si el usuario ya existe
+        }
+
+        // Verificar si el usuario ya existe
         const usuarioExiste = await Usuario.findOne({ email });
         if (usuarioExiste) {
-            return res.status(400).json({ message: "El usuario ya existe", details: 'El email ya está registrado' });
-        };
-        //Encriptar manualmente la contraseña antes de guardarla
+            return res.status(400).json({ 
+                message: "El email ya está registrado" 
+            });
+        }
+
+        // Encriptar contraseña
         const salt = await bcrypt.genSalt(10);
         const hashedPass = await bcrypt.hash(password, salt);
 
-        //Crea el nuevo usuario con la contraseña ya encriptada
+        // Crear usuario con el ObjectId del rol encontrado
         const nuevoUsuario = new Usuario({
-            // nombre,
-            // apellido,
+            nombre: nombre || '',
+            apellido: apellido || '',
             email,
             password: hashedPass,
-            rol: rolId,
+            rol: rolExistente._id, // ← Usar el ObjectId del rol encontrado
             idinstitucion: req.body.idinstitucion || null
         });
 
-        // console.log('Intentando guardar usuario:', nuevoUsuario);
-        
         const usuarioGuardado = await nuevoUsuario.save();
 
-        //Generar token
-        const token = jwt.sign({ id: usuarioGuardado._id }, process.env.SECRET_KEY, { expiresIn: '24h' });
+        // Generar token
+        const token = jwt.sign(
+            { id: usuarioGuardado._id }, 
+            process.env.SECRET_KEY, 
+            { expiresIn: '24h' }
+        );
 
+        // Crear perfil según rol
         const rolNombre = rolExistente.nombre.toLowerCase();
         if (rolNombre === 'estudiante') {
-             // Crear el estudiante asociado automaticamente
             await Estudiante.create({
                 id_usuario: usuarioGuardado._id,
-                nombre: '',
-                apellido: '',
+                nombre: nombre || '',
+                apellido: apellido || '',
                 fechanacimiento: req.body.fechanacimiento || new Date(),
                 telefono: '',
                 direccion: ''
@@ -116,43 +115,42 @@ export const createUsuario = async (req, res) => {
         } else if (rolNombre === 'docente') {
             await Profesor.create({
                 id_usuario: usuarioGuardado._id,
-                nombre: '',
-                apellido: '',
+                nombre: nombre || '',
+                apellido: apellido || '',
                 telefono: '',
                 especialidad: '' 
             });
         } else if (rolNombre === 'admin') {
             await Admin.create({
                 id_usuario: usuarioGuardado._id,
-                nombre: '',
-                apellido: '',
+                nombre: nombre || '',
+                apellido: apellido || '',
                 telefono: '',
                 cargo: ''
             });
         }
-        
-
-        //Enviamos la respuesta sin el password
-        // const usuarioResponse = usuarioGuardado.toObject();
-        // delete usuarioResponse.password;
 
         res.status(201).json({
             message: "Usuario creado exitosamente",
             usuario: {
                 id: usuarioGuardado._id,
                 email: usuarioGuardado.email,
-                rol: usuarioGuardado.nombre,
+                nombre: usuarioGuardado.nombre,
+                apellido: usuarioGuardado.apellido,
+                rol: rolExistente.nombre,
             },
             token
         });
+
     } catch (error) {
-        // console.error('Error al crear usuario:', error);        
+        console.error('❌ Error al crear usuario:', error);
+        
         if (error.code === 11000) {
             return res.status(400).json({
-                message: "El email ya está registrado",
-                details: error.message
+                message: "El email ya está registrado"
             });
         }
+
         res.status(500).json({
             message: "Error al crear el usuario",
             details: error.message

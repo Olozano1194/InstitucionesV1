@@ -37,38 +37,24 @@ app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(express.urlencoded({ extended: true }));
 
+// Configuración de CORS
+const corsOptions = {
+    origin: ['http://localhost:8000', 'https://instituciones-v1.vercel.app'],
+    credentials: true,
+    optionsSuccessStatus: 200
+};
+
 //Habilitar Cors
-app.use(cors());
-app.options('*', (req, res) => {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:8000', 'https://instituciones-v1.vercel.app');
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With, Accept');
-    res.sendStatus(200);
-});
+app.use(cors(corsOptions));
 
-// app.use((req, res, next) => {
-//     console.log('\n--- Nueva Petición ---');
-//     console.log('Método:', req.method);
-//     console.log('URL:', req.url);
-//     console.log('Headers:', req.headers);
-//     if (req.method !== 'OPTIONS') {
-//         console.log('Body:', req.body);
-//     }
-//     next();
-// });
-
-//Middleware para todas las rutas
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:8000', 'https://instituciones-v1.vercel.app');
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With, Accept');
-    next();
-});
 
 // Middleware para manejar errores
-app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).send({ message: 'Algo salió mal!', error: err.message });
+app.use((req, res, next) => {
+    console.log(`\n🔵 ${req.method} ${req.url}`);
+    if (req.method === 'POST' || req.method === 'PUT') {
+        console.log('📦 Body:', req.body);
+    }
+    next();
 });
 
 // Rutas

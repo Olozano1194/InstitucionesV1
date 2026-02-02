@@ -19,48 +19,41 @@ const validateEmptyField = (e) => {
       field.nextElementSibling.innerText = `${field.name} requerido`;
       field.nextElementSibling.style.color = 'red';
       //field.nextElementSibling.style.fontSize = 'semiSmall'
-
-      btnEnviar.disabled = true;
-    
+      btnEnviar.disabled = true;    
       //validación para el telefono
     }else if(field.name === 'telefono'){
       if (isNaN(fieldValue) || fieldValue.trim().length !== 10) {
         field.nextElementSibling.classList.add('mensajeError');
         field.nextElementSibling.innerText = 'debe ingresar un numero válido';
         field.nextElementSibling.style.color = 'red';
-        btnEnviar.disabled = true;
-        
+        btnEnviar.disabled = true;        
       }else {
         // field.classList.remove('falla')
         field.nextElementSibling.classList.remove('mensajeError');
         field.nextElementSibling.innerText = '';
         btnEnviar.disabled = false;
-      }
-          
+      }          
       //validación para los select
     }else if(field.tagName === 'SELECT' && fieldValue === ''){
       field.nextElementSibling.classList.add('mensajeError');
       field.nextElementSibling.innerText = 'Seleccione una opción';
       field.nextElementSibling.style.color = 'red';
       btnEnviar.disabled = true;
-
     }else if (field.name === 'sedes' && isNaN(fieldValue)) {
       field.nextElementSibling.classList.add('mensajeError');
       field.nextElementSibling.innerText = 'debe ingresar un numero válido';
       field.nextElementSibling.style.color = 'red';
-      btnEnviar.disabled = true;
-      
+      btnEnviar.disabled = true;      
     }
     else {
         // field.classList.remove('falla')
         field.nextElementSibling.classList.remove('mensajeError');
         field.nextElementSibling.innerText = '';
         btnEnviar.disabled = false;
-      }
-  
+      }  
 }
 
-  //validacion para el correo
+//validacion para el correo
 const validateEmailFormat = (e) => {
   const field = e.target;
   const fieldValue = field.value.trim();
