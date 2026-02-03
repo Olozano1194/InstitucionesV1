@@ -11,17 +11,16 @@ import {
  * Clase para gestionar validación de formularios
  */
 export class FormValidator {
-  constructor(formId, mode = 'register') {
+  constructor(formId, mode = 'default') {
     this.form = document.getElementById(formId);
     this.mode = mode;
+    this.errors = {}; 
+    this.submitButton = null;    
     
     if (!this.form) {
       console.error(`FormValidator: no existe un formulario con id "${formId}"`);
       return;
-    }
-
-    this.errors = {}; // Guardamos errores de cada campo
-    this.submitButton = null;
+    }    
   }
 
   /**
@@ -40,7 +39,6 @@ export class FormValidator {
     this.errors[field.name] = message;
     this.updateSubmitButton();
   }
-
   /**
    * Oculta el mensaje de error de un campo
    */
@@ -50,23 +48,21 @@ export class FormValidator {
     if (errorElement && errorElement.classList.contains('error-message')) {
       errorElement.textContent = '';
       errorElement.classList.add('hidden');
-    }
-    
+    }    
     // Quitar error del registro
     delete this.errors[field.name];
     this.updateSubmitButton();
   }
-
   /**
-   * Valida un campo según su tipo
-   */
+  * Valida un campo según su tipo
+  */
   validateField(field) {
     const value = field.value;
-    const fieldName = field.name;
+    const name = field.name;
     let isValid = true;
     let errorMessage = '';
 
-    switch (fieldName) {
+    switch (name) {
       case 'email':
         if (!isNotEmpty(value)) {
           isValid = false;
@@ -94,72 +90,50 @@ export class FormValidator {
           errorMessage = 'Las contraseñas no coinciden';
         }
         break;
-
-      case 'nombre':
-        if (!isNotEmpty(value)) {
+      
+      case 'telefono':
+      case 'sedes':
+        if (!isNumeric(value)) {
           isValid = false;
-          errorMessage = 'El nombre es requerido';
+          errorMessage = 'Debe ingresar un número válido';
         } else if (value.length < 2) {
           isValid = false;
           errorMessage = 'El nombre debe tener al menos 2 caracteres';
         }
         break;
-
-      case 'apellido':
-        if (!isNotEmpty(value)) {
-          isValid = false;
-          errorMessage = 'El apellido es requerido';
-        } else if (value.length < 2) {
-          isValid = false;
-          errorMessage = 'El apellido debe tener al menos 2 caracteres';
-        }
-        break;
-
       case 'rol':
       case 'departamento':
       case 'municipio':
+      case 'estado':
         if (!isValidSelection(value)) {
           isValid = false;
           errorMessage = 'Selecciona una opción';
         }
         break;
-
-      case 'sedes':
-        if (!isNumeric(value)) {
-          isValid = false;
-          errorMessage = 'Debe ingresar un número válido';
-        }
-        break;
-
       default:
-        // Validación genérica
         if (!isNotEmpty(value)) {
           isValid = false;
-          errorMessage = `${fieldName} es requerido`;
+          errorMessage = 'Este campo es requerido';
         }
     }
-
     // Mostrar u ocultar error
     if (!isValid) {
       this.showError(field, errorMessage);
     } else {
       this.hideError(field);
     }
-
     return isValid;
-}
-
+  }
   /**
    * Habilita/deshabilita el botón según el estado del formulario
    */
   updateSubmitButton() {
     if (!this.submitButton) return;
 
-    // ✅ El botón se habilita solo si NO hay errores
+    // El botón se habilita solo si NO hay errores
     const hasErrors = Object.keys(this.errors).length > 0;
     this.submitButton.disabled = hasErrors;
   }
-
   /**
    * Configura el botón de envío
    */
@@ -169,7 +143,6 @@ export class FormValidator {
       this.submitButton.disabled = true; // Deshabilitado por defecto
     }
   }
-
   /**
    * Valida todos los campos del formulario
    */
@@ -182,7 +155,6 @@ export class FormValidator {
         allValid = false;
       }
     });
-
     return allValid;
   }
 

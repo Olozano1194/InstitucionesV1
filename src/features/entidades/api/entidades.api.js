@@ -1,72 +1,67 @@
-import { httpClient } from '../../core/httpClient.js';
-import { httpClient } from '../../../core/';
-import { config } from '../../../core/config/config.js';
+import { apiClient } from '../../../core/api/api.js';
+import { config } from '../../../core/config.js';
 
-/**
- * API de Entidades
- * @description Capa de abstracción sobre las peticiones HTTP de entidades
- * SOLO maneja comunicación con el backend, NO lógica de negocio
- */
 
-const ENDPOINT = config.endpoints.usuarios;
-
-export const usuariosAPI = {
+const ENDPOINT = config.endpoints.entidades;
+  
+export const entidadesAPI = {
   /**
-   * Crear un nuevo usuario
-   * @param {Object} userData - Datos del usuario
-   * @returns {Promise<Object>} Usuario creado con token
+  * Obtener departamentos
+  */
+  async getDepartamentos() {
+    return apiClient.get('/departamentos');
+  },
+  /**
+   * Obtener municipios por departamento
    */
-  async create(userData) {
-    return httpClient.post(ENDPOINT, userData);
+  async getMunicipiosByDepartamento(departamentoId) {
+    return apiClient.get('/municipios/by-departamento', { departamento: departamentoId });
+  },
+  /**
+  * Crear un nueva entidad
+  */
+  async create(entidadData) {
+  return apiClient.post(ENDPOINT, entidadData);
   },
 
   /**
-   * Listar todos los usuarios
-   * @param {Object} filters - Filtros opcionales (rol, activo, etc)
-   * @returns {Promise<Array>} Lista de usuarios
-   */
+  * Listar todos las entidades
+  */
   async getAll(filters = {}) {
-    return httpClient.get(ENDPOINT, filters);
+    return apiClient.get(ENDPOINT, filters);
   },
 
   /**
-   * Obtener un usuario por ID
-   * @param {string} id - ID del usuario
-   * @returns {Promise<Object>} Datos del usuario
-   */
+  * Obtener entidad por ID
+  */
   async getById(id) {
-    return httpClient.get(`${ENDPOINT}/${id}`);
+  return apiClient.get(`${ENDPOINT}/${id}`);
   },
 
   /**
-   * Actualizar usuario
-   * @param {string} id - ID del usuario
-   * @param {Object} updateData - Datos a actualizar
-   * @returns {Promise<Object>} Usuario actualizado
-   */
+  * Actualizar entidad
+  */
   async update(id, updateData) {
-    return httpClient.put(`${ENDPOINT}/${id}`, updateData);
+    return apiClient.put(`${ENDPOINT}/${id}`, updateData);
   },
 
   /**
-   * Eliminar usuario
-   * @param {string} id - ID del usuario
-   * @returns {Promise<Object>} Confirmación
-   */
+  * Eliminar entidad
+  */
   async delete(id) {
-    return httpClient.delete(`${ENDPOINT}/${id}`);
+    return apiClient.delete(`${ENDPOINT}/${id}`);
+  },
+  /**
+   * Obtener sedes de una entidad
+   */
+  async getSedes(entidadId) {
+    return apiClient.get(`${ENDPOINT}/${entidadId}/sedes`);
   },
 
   /**
-   * Login de usuario
-   * @param {string} email 
-   * @param {string} password 
-   * @returns {Promise<Object>} Token y datos del usuario
+   * Obtener estadísticas de entidades
    */
-  async login(email, password) {
-    return httpClient.post(`${config.endpoints.auth}/login`, { 
-      email, 
-      password 
-    });
-  },
+  async getStats() {
+    return apiClient.get(`${ENDPOINT}/stats`);
+  },  
 };

@@ -1,5 +1,6 @@
 export function isNotEmpty(value) {
-  return value.trim().length > 0;
+  if (value === undefined || value === null) return false;
+  return String(value).trim().length > 0;
 }
 
 /**

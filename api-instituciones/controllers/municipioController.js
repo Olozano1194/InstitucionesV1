@@ -19,6 +19,7 @@ export const getMunicipalityByDepartament = async (req, res) => {
         }
 
         const municipios = await Municipio.find({ id_departamento: departamento }).populate('id_departamento');
+        
 
         if (!municipios || municipios.length === 0) {
             return res.status(404).json({ 

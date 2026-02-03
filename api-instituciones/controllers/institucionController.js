@@ -24,20 +24,14 @@ export const createInstitucion = async (req, res) => {
     try {
         const { estudiantes = [], profesores = [] } = req.body;
        
-        // Validar que los Ids de departamento sea ObjectId valido
-        if (!mongoose.Types.ObjectId.isValid(req.body.iddepartamento)) {
-            return res.status(400).json({
-                message: 'ID de departamento inválido',
-                received: req.body.iddepartamento
-            });            
+        if (!req.body.iddepartamento) {
+            return res.status(400).json({ message: 'Departamento requerido' });
         }
-        // Validar que los Ids de municipio sea ObjectId valido
-        if (!mongoose.Types.ObjectId.isValid(req.body.idmunicipio)) {
-            return res.status(400).json({ 
-                message: 'ID de municipio inválido',
-                received: req.body.idmunicipio
-            });
+
+        if (!req.body.idmunicipio) {
+            return res.status(400).json({ message: 'Municipio requerido' });
         }
+
        
         // Validar que los Ids de estudiantes y profesores existentes
         if (estudiantes.length > 0) {

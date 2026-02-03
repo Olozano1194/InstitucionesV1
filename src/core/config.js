@@ -23,22 +23,22 @@ export const config = {
   endpoints: {
     auth: '/auth',
     usuarios: '/usuario',  
-    entidades: '/entidades',
+    entidades: '/instituciones',
     estudiantes: '/estudiantes',
     profesores: '/profesores',
   },
 
   // Rutas del frontend
   routes: {
-    login: '/src/pages/auth/login.html',
+    login: '/pages/auth/login.html',
     dashboards: {
       admin: '/pages/admin/home.html',
-      docente: '/src/pages/docente/home.html',
-      estudiante: '/src/pages/estudiante/home.html',
+      docente: '/pages/docente/home.html',
+      estudiante: '/pages/estudiante/home.html',
     },    
     usuarios: {
-      list: '/src/pages/admin/listarUsuarios.html',
-      create: '/src/pages/admin/crearUsuario.html',
+      list: '/pages/admin/listarUsuarios.html',
+      create: '/pages/admin/crearUsuario.html',
     }
   },
 
