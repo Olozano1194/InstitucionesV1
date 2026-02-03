@@ -81,7 +81,7 @@ export const apiClient = {
     const queryParams = new URLSearchParams(params).toString();
     const url = queryParams ? `${endpoint}?${queryParams}` : endpoint;
     
-    return apiRequest(url, {
+    return request(url, {
       method: 'GET',
     });
   },
@@ -90,7 +90,7 @@ export const apiClient = {
    * POST request
    */
   async post(endpoint, data) {
-    return apiRequest(endpoint, {
+    return request(endpoint, {
       method: 'POST',
       body: JSON.stringify(data),
     });
@@ -100,7 +100,7 @@ export const apiClient = {
    * PUT request
    */
   async put(endpoint, data) {
-    return apiRequest(endpoint, {
+    return request(endpoint, {
       method: 'PUT',
       body: JSON.stringify(data),
     });
@@ -110,7 +110,7 @@ export const apiClient = {
    * DELETE request
    */
   async delete(endpoint) {
-    return apiRequest(endpoint, {
+    return request(endpoint, {
       method: 'DELETE',
     });
   },
@@ -119,7 +119,7 @@ export const apiClient = {
    * PATCH request
    */
   async patch(endpoint, data) {
-    return apiRequest(endpoint, {
+    return request(endpoint, {
       method: 'PATCH',
       body: JSON.stringify(data),
     });

@@ -1,4 +1,4 @@
-import { loginUser } from '../../../core/api/api.js';
+import { usuariosAPI } from '../../usuarios/api/usuarios.api.js';
 import { saveToken, saveUser, saveRole } from '../../../core/auth/session.js';
 import { isNotEmpty, isValidEmail } from '../../../js/validations/validaciones.js';
 
@@ -13,7 +13,7 @@ export const loginService = {
     }
 
     try {
-      const res = await loginUser(email, password);
+      const res = await usuariosAPI.login(email, password);
       saveToken(res.token);
       saveUser(res.user);
       saveRole(res.user.rol);

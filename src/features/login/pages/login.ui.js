@@ -40,6 +40,10 @@ export const loginUI = {
 
   showError(message) {
     const error = document.getElementById('error-message');
+    if (!error) {
+      console.warn('Elemento error-message no encontrado');
+      return;
+    }
     error.textContent = message;
     error.classList.remove('hidden');
   }
