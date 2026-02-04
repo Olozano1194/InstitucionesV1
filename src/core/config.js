@@ -5,7 +5,7 @@ const ENV = {
     TIMEOUT: 10000,
   },
   production: {
-    API_BASE_URL: 'https://api-instituciones.vercel.app/api',
+    API_BASE_URL: '/api',
     TOKEN_EXPIRY: '24h',
     TIMEOUT: 15000,
   }
@@ -16,12 +16,11 @@ const isDevelopment = window.location.hostname === 'localhost'
   || window.location.hostname === '127.0.0.1';
 
 export const config = {
-  // ✅ Spread del entorno actual
+  // Spread del entorno actual
   ...ENV[isDevelopment ? 'development' : 'production'],
   
-  // Endpoints (sin barra inicial para más flexibilidad) ✅
+  // Endpoints (sin barra inicial para más flexibilidad)
   endpoints: {
-    auth: '/auth',
     usuarios: '/usuario',  
     entidades: '/instituciones',
     estudiantes: '/estudiantes',
@@ -39,7 +38,11 @@ export const config = {
     usuarios: {
       list: '/pages/admin/listarUsuarios.html',
       create: '/pages/admin/crearUsuario.html',
-    }
+    },
+    entidades: {
+      list: '/pages/admin/listarEntidades.html',
+      create: '/pages/auth/entidades/register.html',
+    },
   },
 
   // Storage keys
@@ -49,7 +52,7 @@ export const config = {
     ROLE: '__app_role',
   },
   
-  // ✅ NUEVO: Info del entorno actual (útil para debugging)
+  // NUEVO: Info del entorno actual
   isDevelopment,
 };
 

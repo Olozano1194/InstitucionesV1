@@ -1,16 +1,18 @@
 {
   "version": 2,
   "builds": [
-    { "src": "src/**/*", "use": "@vercel/static" }
+    { "src": "api/app.js", "use": "@vercel/node" }    
   ],
   "routes": [
+    { "src": "/api/(.*)", "dest": "api/app.js" },
+    { "src": "/(.*\\.(css|js|json|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot))", "dest": "/src/$1" },
     { "src": "/", "dest": "src/pages/auth/login.html" },
-    { "src": "/home", "dest": "src/pages/admin/home.html" },
-    { "src": "/registrar", "dest": "src/pages/auth/entidades/registrarEntidades.html" },
-    { "src": "/actualizar", "dest": "src/pages/auth/entidades/actualizarEntidades.html" },
-    
+    { "src": "/pages/(.*)", "dest": "src/pages/$1" },
+    { "src": "/core/(.*)", "dest": "src/core/$1" },
+    { "src": "/features/(.*)", "dest": "src/features/$1" },    
     { "src": "/js/(.*)", "dest": "src/js/$1" },
-    { "src": "/api/(.*)", "dest": "src/api/$1" },
+    { "src": "/(.*)", "dest": "src/$1" },
+    
     
     { "src": "/output.css", "dest": "src/output.css" }
     
