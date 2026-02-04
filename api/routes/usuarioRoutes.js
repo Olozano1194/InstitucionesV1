@@ -8,7 +8,7 @@ import {
     deleteUsuario,
     loginUsuario    
 }  from '../controllers/usuariosController.js';
-import upload  from '../middleware/upload.js';
+
 
 const router = express.Router();
 
@@ -118,7 +118,7 @@ router.get('/me', protegerRutas, getUsuarioById);
  *       404:
  *         description: Usuario no encontrado
  */
-router.put('/:id', protegerRutas, upload.single('fotoPerfil'), updateUsuario);
+router.put('/:id', protegerRutas, updateUsuario);
 
 /**
  * @swagger
