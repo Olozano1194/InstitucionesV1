@@ -4,10 +4,6 @@
     {
       "src": "api/app.js",
       "use": "@vercel/node"
-    },
-    {
-      "src": "src/**",
-      "use": "@vercel/static"
     }
   ],
   "routes": [
@@ -20,16 +16,16 @@
       "dest": "/src/output.css"
     },
     {
+      "src": "/features/(.*)",
+      "dest": "/src/features/$1"
+    },
+    {
       "src": "/pages/(.*)",
       "dest": "/src/pages/$1"
     },
     {
       "src": "/core/(.*)",
       "dest": "/src/core/$1"
-    },
-    {
-      "src": "/features/(.*)",
-      "dest": "/src/features/$1"
     },
     {
       "src": "/js/(.*)",
@@ -42,34 +38,6 @@
     {
       "src": "/",
       "dest": "/src/pages/auth/login.html"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/src/$1"
-    }
-  ],
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "X-Frame-Options",
-          "value": "DENY"
-        }
-      ]
-    },
-    {
-      "source": "/(.*)\\.(js|mjs)",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "application/javascript; charset=utf-8"
-        }
-      ]
     }
   ]
 }
